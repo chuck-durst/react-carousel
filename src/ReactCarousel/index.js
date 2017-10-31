@@ -1,24 +1,6 @@
-import React      from 'react'
 import PropTypes  from 'prop-types'
 
-import { carouselStyle } from './styles'
-
-
-class ReactCarousel extends React.PureComponent {
-  render() {
-    return (
-      <div className={ this.props.className } style={ carouselStyle }>
-        IN
-      </div>
-    );
-  }
-}
-
-
-
-/**-------------------------**\
- * propTypes & defaultProps
-\**-------------------------**/
+import ReactCarousel from './ReactCarousel'
 
 
 ReactCarousel.propTypes = {
@@ -26,7 +8,7 @@ ReactCarousel.propTypes = {
   showArrows      : PropTypes.bool,
   showDots        : PropTypes.bool,
   autoPlay        : PropTypes.bool,
-  autoPlayDelay   : PropTypes.int,
+  autoPlayDelay   : PropTypes.number,
   isInfinite      : PropTypes.bool,
   stopOnHover     : PropTypes.bool,
   customNextArrow : PropTypes.element,
@@ -34,7 +16,7 @@ ReactCarousel.propTypes = {
   customDots      : PropTypes.func,
   beforeChange    : PropTypes.func,
   afterChange     : PropTypes.func,
-  goToSlide       : PropTypes.int
+  goToSlide       : PropTypes.number
 };
 
 
@@ -46,9 +28,9 @@ ReactCarousel.defaultProps = {
   autoPlayDelay   : 2000,
   isInfinite      : true,
   stopOnHover     : false,
-  customNextArrow : <div />,
-  customPrevArrow : <div />,
-  customDots      : i => <div key={ i } />,
+  customNextArrow : null,
+  customPrevArrow : null,
+  customDots      : i => i,
   beforeChange    : null,
   afterChange     : null,
   goToSlide       : null
