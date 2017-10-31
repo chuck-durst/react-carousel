@@ -9,30 +9,27 @@ class App extends React.PureComponent {
     super(props);
 
     this.settings = {
-      className       : 'react-carousel',
-      showArrows      : true,
-      showDots        : true,
-      autoPlay        : false,
-      autoPlayDelay   : 2000,
-      isInfinite      : true,
-      stopOnHover     : false,
-      customNextArrow : <div />,
-      customPrevArrow : <div />,
-      customDots      : i => <div key={ i } />,
-      beforeChange    : null,
-      afterChange     : null,
-      goToSlide       : null
+
     }
   }
 
 
   render() {
+    const slides = [
+      'http://fakeimg.pl/300x400',
+      'http://fakeimg.pl/400',
+      'http://fakeimg.pl/500x750',
+      'http://fakeimg.pl/600',
+    ];
+
     return (
       <div className="app">
         <div className="app__header">
           <h1>React Carousel</h1>
         </div>
-        <ReactCarousel { ...this.settings } />
+        <div className="app__container">
+          <ReactCarousel { ...this.settings } slides={ slides } />
+        </div>
       </div>
     );
   }
