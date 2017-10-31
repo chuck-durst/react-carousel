@@ -9,7 +9,7 @@ class App extends React.PureComponent {
     super(props);
 
     this.settings = {
-
+      isInfinite: false
     }
   }
 

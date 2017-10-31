@@ -10,7 +10,7 @@ class ReactCarousel extends React.PureComponent {
     super(props);
 
     this.state = {
-      slides       : null,
+      slides       : [],
       activeSlide  : 0
     }
   }
@@ -36,14 +36,14 @@ class ReactCarousel extends React.PureComponent {
 
   _getPrevArrow = () => {
     return this.props.customPrevArrow
-      ? this.props.customPrevArrow(this.props.isInfinite || (this.state.activeSlide > 0))
+      ? this.props.customPrevArrow(this.props.isInfinite === true || (this.state.activeSlide > 0))
       : null
   };
 
 
   _getNextArrow = () => {
     return this.props.customNextArrow
-      ? this.props.customNextArrow(this.props.isInfinite || (this.state.activeSlide < this.state.slides.length))
+      ? this.props.customNextArrow(this.props.isInfinite === true || (this.state.activeSlide < this.state.slides.length - 1))
       : null
   };
 
@@ -54,7 +54,7 @@ class ReactCarousel extends React.PureComponent {
       this.setState({ activeSlide: this.state.slides.length - 1 })
     } else if (slide > this.state.slides.length - 1 && this.props.isInfinite === true) {
       this.setState({ activeSlide: 0 });
-    } else {
+    } else if (slide >= 0 && slide <= this.state.slides.length -1) {
       this.setState({ activeSlide: slide });
     }
   };

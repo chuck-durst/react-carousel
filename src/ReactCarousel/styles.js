@@ -24,3 +24,15 @@ export const slideStyle = {
 export const activeSlideStyle = {
   display: 'block'
 };
+
+export const defaultPrevArrowStyle = {
+
+};
+
+export const defaultNextArrowStyle = {
+
+};
+
+export const lockedArrowStyle = {
+  color: 'grey'
+};
