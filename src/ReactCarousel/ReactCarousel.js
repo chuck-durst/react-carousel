@@ -48,6 +48,13 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  _getComponentStyle = () => {
+    return Object.assign({}, carouselStyle, {
+      backgroundColor: this.props.backdropColor
+    })
+  };
+
+
   _goToSlide = (slide) => {
     console.log(slide);
     if (slide < 0 && this.props.isInfinite === true) {
@@ -69,20 +76,26 @@ class ReactCarousel extends React.PureComponent {
       ? this._getNextArrow()
       : null;
 
+    const componentStyle = this._getComponentStyle();
+console.log(componentStyle)
 
     return (
-      <div className={ this.props.className } style={ carouselStyle }>
-        <div onClick={ () => this._goToSlide(this.state.activeSlide -1 ) }>
-          { prevArrow }
-        </div>
+      <div className={ this.props.className } style={ componentStyle }>
+        { this.props.showArrows === true &&
+          <div onClick={ () => this._goToSlide(this.state.activeSlide -1 ) }>
+            { prevArrow }
+          </div>
+        }
         <Slider
           slides={ this.state.slides }
           activeSlide={ this.state.activeSlide }
           isAnimated={ this.props.isAnimated }
         />
-        <div onClick={ () => this._goToSlide(this.state.activeSlide + 1) }>
-          { nextArrow }
-        </div>
+        { this.props.showArrows === true &&
+          <div onClick={ () => this._goToSlide(this.state.activeSlide + 1) }>
+            { nextArrow }
+          </div>
+        }
       </div>
     );
   }

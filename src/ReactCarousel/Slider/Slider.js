@@ -6,15 +6,6 @@ import { sliderStyle}  from '../styles'
 
 
 class Slider extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isAnimated: props.isAnimated
-    }
-  }
-
-
   render() {
 
     if (!this.props.slides || this.props.slides.length === 0)
@@ -28,6 +19,7 @@ class Slider extends React.PureComponent {
               key={ key }
               index={ key }
               slide={ slide }
+              isAnimated={ this.props.isAnimated }
               totalSlides={ this.props.slides.length }
               activeSlide={ this.props.activeSlide }
             />

@@ -9,7 +9,8 @@ class App extends React.PureComponent {
     super(props);
 
     this.settings = {
-      isInfinite: false
+      isInfinite      : false,
+      backdropColor   : 'rgba(0, 0, 0, 0.64)'
     }
   }
 

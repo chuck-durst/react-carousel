@@ -6,7 +6,7 @@ import {
   prevSlideStyle,
   nextSlideStyle    }  from '../styles'
 
-export default ({ slide, activeSlide, index, totalSlides }) => {
+export default ({ slide, activeSlide, index, totalSlides, isAnimated }) => {
 
   this._getStyle = () => {
     let stateStyle = activeSlide === index
@@ -15,12 +15,12 @@ export default ({ slide, activeSlide, index, totalSlides }) => {
         ? nextSlideStyle
         : prevSlideStyle;
 
-    let ret = Object.assign({}, slideStyle, stateStyle, {
+    return Object.assign({}, slideStyle, stateStyle, {
       backgroundImage : `url(${ slide })`,
-
+      transition      : isAnimated === true
+                          ? slideStyle.transition
+                          : 'none'
     });
-    console.log(ret)
-    return ret;
   };
 
   return (
