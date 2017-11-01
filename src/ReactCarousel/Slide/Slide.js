@@ -1,20 +1,29 @@
 import React      from 'react'
 
-import { slideStyle, activeSlideStyle }  from '../styles'
+import {
+  slideStyle,
+  activeSlideStyle,
+  prevSlideStyle,
+  nextSlideStyle    }  from '../styles'
 
-export default ({ slide, isActive }) => {
-  this.activeSlideStyle = Object.assign({}, slideStyle, activeSlideStyle);
+export default ({ slide, activeSlide, index, totalSlides }) => {
 
+  this._getStyle = () => {
+    let stateStyle = activeSlide === index
+      ? activeSlideStyle
+      : index > activeSlide
+        ? nextSlideStyle
+        : prevSlideStyle;
 
-  this._getStyle = (slide, isActive) => {
-    const defaultStyle =  isActive ? this.activeSlideStyle : slideStyle;
+    let ret = Object.assign({}, slideStyle, stateStyle, {
+      backgroundImage : `url(${ slide })`,
 
-    return Object.assign({}, defaultStyle, {
-      backgroundImage: `url(${ slide })`
     });
+    console.log(ret)
+    return ret;
   };
 
   return (
-    <div style={ this._getStyle(slide, isActive) } />
+    <div style={ this._getStyle() } />
   )
 }

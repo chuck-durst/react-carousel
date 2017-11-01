@@ -26,8 +26,10 @@ class Slider extends React.PureComponent {
           this.props.slides.map((slide, key) => (
             <Slide
               key={ key }
+              index={ key }
               slide={ slide }
-              isActive={ this.props.activeSlide === key }
+              totalSlides={ this.props.slides.length }
+              activeSlide={ this.props.activeSlide }
             />
           ))
         }
