@@ -1,5 +1,8 @@
 import React          from 'react'
+
 import ReactCarousel  from './ReactCarousel'
+import NextArrow      from './ReactCarousel/NextArrow'
+import PrevArrow      from './ReactCarousel/PrevArrow'
 
 import './App.scss'
 
@@ -9,8 +12,21 @@ class App extends React.PureComponent {
     super(props);
 
     this.settings = {
-      isInfinite      : false,
-      backdropColor   : 'rgba(0, 0, 0, 0.64)'
+      className       : 'react-carousel',
+      showArrows      : true,
+      //showDots        : true,
+      //autoPlay        : false,
+      //autoPlayDelay   : 2000,
+      isInfinite      : true,
+      isAnimated      : true,
+      //stopOnHover     : false,
+      customNextArrow : NextArrow,
+      customPrevArrow : PrevArrow,
+      //customDots      : i => i,
+      //beforeChange    : null,
+      //afterChange     : null,
+      //goToSlide       : null,
+      backdropColor   : null
     }
   }
 

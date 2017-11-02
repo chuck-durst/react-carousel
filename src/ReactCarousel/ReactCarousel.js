@@ -2,8 +2,9 @@ import React      from 'react'
 
 import Slider from './Slider'
 
-import { carouselStyle } from './styles'
-
+import {
+  carouselStyle,
+  arrowContainerStyle } from './styles'
 
 class ReactCarousel extends React.PureComponent {
   constructor(props) {
@@ -82,7 +83,7 @@ console.log(componentStyle)
     return (
       <div className={ this.props.className } style={ componentStyle }>
         { this.props.showArrows === true &&
-          <div onClick={ () => this._goToSlide(this.state.activeSlide -1 ) }>
+          <div onClick={ () => this._goToSlide(this.state.activeSlide -1 ) } style={ arrowContainerStyle }>
             { prevArrow }
           </div>
         }
@@ -92,7 +93,7 @@ console.log(componentStyle)
           isAnimated={ this.props.isAnimated }
         />
         { this.props.showArrows === true &&
-          <div onClick={ () => this._goToSlide(this.state.activeSlide + 1) }>
+          <div onClick={ () => this._goToSlide(this.state.activeSlide + 1) } style={ arrowContainerStyle }>
             { nextArrow }
           </div>
         }

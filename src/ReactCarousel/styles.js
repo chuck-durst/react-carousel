@@ -42,13 +42,21 @@ export const nextSlideStyle = {
   opacity   : 0
 };
 
+export const arrowContainerStyle = {
+  height: 'inherit',
+  width : 'initial'
+};
+
 export const defaultPrevArrowStyle = {
-
+  height          : '100%',
+  width           : '50px',
+  display         : 'flex',
+  alignItems      : 'center',
+  justifyContent  : 'center',
+  cursor          : 'pointer'
 };
 
-export const defaultNextArrowStyle = {
-
-};
+export const defaultNextArrowStyle = defaultPrevArrowStyle;
 
 export const lockedArrowStyle = {
   color: 'grey'

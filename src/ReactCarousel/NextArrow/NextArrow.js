@@ -9,6 +9,6 @@ export default (isActive) => {
     : Object.assign({}, defaultNextArrowStyle, lockedArrowStyle);
 
   return (
-    <div style={ this.style }>{ '>' }</div>
+    <div style={ this.style }>&#x25ba;</div>
   )
 }

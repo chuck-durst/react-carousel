@@ -5,22 +5,22 @@ import PrevArrow      from './PrevArrow'
 import NextArrow      from './NextArrow'
 
 ReactCarousel.propTypes = {
-  slides          : PropTypes.arrayOf(PropTypes.string).isRequired, //
-  className       : PropTypes.string,                               //
-  showArrows      : PropTypes.bool,                                 //
+  slides          : PropTypes.arrayOf(PropTypes.string).isRequired,
+  className       : PropTypes.string,
+  showArrows      : PropTypes.bool,
   showDots        : PropTypes.bool,
   autoPlay        : PropTypes.bool,
   autoPlayDelay   : PropTypes.number,
-  isInfinite      : PropTypes.bool,                                 //
-  isAnimated      : PropTypes.bool,                                 //
+  isInfinite      : PropTypes.bool,
+  isAnimated      : PropTypes.bool,
   stopOnHover     : PropTypes.bool,
-  customNextArrow : PropTypes.func,                                 //
-  customPrevArrow : PropTypes.func,                                 //
+  customNextArrow : PropTypes.func,
+  customPrevArrow : PropTypes.func,
   customDots      : PropTypes.func,
   beforeChange    : PropTypes.func,
   afterChange     : PropTypes.func,
   goToSlide       : PropTypes.number,
-  backdropColor   : PropTypes.string                                //
+  backdropColor   : PropTypes.string
 };
 
 
