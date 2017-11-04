@@ -13,13 +13,21 @@ class ReactCarousel extends React.PureComponent {
     this.state = {
       slides       : [],
       activeSlide  : 0
-    }
+    };
+
+    this.autoPlayInterval = null;
   }
 
 
   componentDidMount() {
     if (this.props.slides)
       this._initSlides(this.props.slides);
+
+    if (this.props.autoPlay === true) {
+      this.autoPlayInterval = setInterval(() => {
+        this._goToSlide();
+      }, this.props.autoPlayDelay);
+    }
   }
 
 
@@ -27,7 +35,17 @@ class ReactCarousel extends React.PureComponent {
     if (this.props.slides !== nextProps.slides) {
       this._initSlides(nextProps.slides);
     }
+
+    if (nextProps.goToSlide && nextProps.goToSlide !== this.props.goToSlide && this.state.slides[nextProps.goToSlide]) {
+      this._goToSlide(nextProps.goToSlide);
+    }
   }
+
+
+  componentWillUnmount() {
+    clearInterval(this.autoPlayInterval);
+  }
+
 
   /**
    * Initialize the slides
@@ -84,7 +102,7 @@ class ReactCarousel extends React.PureComponent {
    * @param slide
    * @private
    */
-  _goToSlide = (slide) => {
+  _goToSlide = (slide = this.state.activeSlide + 1) => {
     this.props.beforeChange();
     if (slide < 0 && this.props.isInfinite === true) {
       this.setState({ activeSlide: this.state.slides.length - 1 }, this.props.afterChange)
@@ -110,7 +128,7 @@ class ReactCarousel extends React.PureComponent {
     return (
       <div className={ this.props.className } style={ componentStyle }>
         { this.props.showArrows === true &&
-          <div onClick={ () => this._goToSlide(this.state.activeSlide -1 ) } style={ arrowContainerStyle }>
+          <div onClick={ () => this._goToSlide(this.state.activeSlide - 1) } style={ arrowContainerStyle }>
             { prevArrow }
           </div>
         }
@@ -122,7 +140,7 @@ class ReactCarousel extends React.PureComponent {
           showDots={ this.props.showDots }
         />
         { this.props.showArrows === true &&
-          <div onClick={ () => this._goToSlide(this.state.activeSlide + 1) } style={ arrowContainerStyle }>
+          <div onClick={ () => this._goToSlide() } style={ arrowContainerStyle }>
             { nextArrow }
           </div>
         }

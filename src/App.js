@@ -15,7 +15,7 @@ class App extends React.PureComponent {
       className       : 'react-carousel',
       showArrows      : true,
       showDots        : true,
-      //autoPlay        : false,
+      autoPlay        : true,
       //autoPlayDelay   : 2000,
       isInfinite      : true,
       isAnimated      : true,
@@ -25,9 +25,9 @@ class App extends React.PureComponent {
       customDots      : Dots,
       beforeChange    : ()=>console.log('before change'),
       afterChange     : ()=>console.log('after change'),
-      //goToSlide       : null,
-      backdropColor   : null
-    }
+      goToSlide       : null,
+      backdropColor   : null,
+    };
   }
 
 

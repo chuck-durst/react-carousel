@@ -31,7 +31,7 @@ ReactCarousel.defaultProps = {
   showArrows      : true,
   showDots        : true,
   autoPlay        : false,
-  autoPlayDelay   : 2000,
+  autoPlayDelay   : 5000,
   isInfinite      : true,
   isAnimated      : true,
   stopOnHover     : false,
