@@ -3,6 +3,7 @@ import PropTypes  from 'prop-types'
 import ReactCarousel  from './ReactCarousel'
 import PrevArrow      from './PrevArrow'
 import NextArrow      from './NextArrow'
+import Dot            from './Dot'
 
 ReactCarousel.propTypes = {
   slides          : PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -36,7 +37,7 @@ ReactCarousel.defaultProps = {
   stopOnHover     : false,
   customNextArrow : NextArrow,
   customPrevArrow : PrevArrow,
-  customDots      : i => i,
+  customDots      : Dot,
   beforeChange    : null,
   afterChange     : null,
   goToSlide       : null,

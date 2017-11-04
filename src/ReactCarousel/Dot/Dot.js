@@ -2,7 +2,7 @@ import React from 'react'
 
 import { dotStyle, activeDotStyle } from '../styles'
 
-export default (i, isActive) => {
+export default ({ isActive, index }) => {
 
   this.getStyle = () => {
     return isActive === true
@@ -10,9 +10,5 @@ export default (i, isActive) => {
       : dotStyle;
   };
 
-  return (
-    <div style={ this.getStyle } className="ce-carousel__dot">
-
-    </div>
-  )
+  return ( <div style={ this.getStyle() } className={ `ce-carousel__dot--${ index }` } /> );
 }

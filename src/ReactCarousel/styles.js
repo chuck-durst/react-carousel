@@ -86,10 +86,26 @@ export const lockedArrowStyle = {
  * Dots
 \**-------------------------**/
 
-export const dotStyle = {
+export const paginationStyle = {
+  zIndex          : 200,
+  position        : 'absolute',
+  bottom          : 0,
+  left            : 0,
+  display         : 'flex',
+  alignItems      : 'center',
+  justifyContent  : 'center',
+  width           : '100%',
+};
 
+
+export const dotStyle = {
+  width           : '10px',
+  height          : '10px',
+  margin          : '5px',
+  borderRadius    : '100%',
+  backgroundColor : 'grey'
 };
 
 export const activeDotStyle = {
-
+  backgroundColor: 'black'
 };

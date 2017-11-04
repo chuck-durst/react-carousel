@@ -1,6 +1,7 @@
 import React      from 'react'
 
-import Slide  from '../Slide'
+import Slide      from '../Slide'
+import Pagination from '../Pagination'
 
 import { sliderStyle}  from '../styles'
 
@@ -13,6 +14,7 @@ class Slider extends React.PureComponent {
 
     return (
       <div style={ sliderStyle } className="ce-carousel__slider">
+        <Pagination slides={ this.props.slides } activeSlide={ this.props.activeSlide } />
         {
           this.props.slides.map((slide, key) => (
             <Slide
