@@ -32,6 +32,6 @@ export default ({ slide, activeSlide, index, totalSlides, isAnimated }) => {
   };
 
   return (
-    <div style={ this._getStyle() } />
+    <div style={ this._getStyle() } className="ce-carousel__slide" />
   )
 }

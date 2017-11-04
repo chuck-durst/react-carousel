@@ -26,7 +26,7 @@ ReactCarousel.propTypes = {
 
 ReactCarousel.defaultProps = {
   slides          : null,
-  className       : 'react-carousel',
+  className       : 'ce-carousel',
   showArrows      : true,
   showDots        : true,
   autoPlay        : false,

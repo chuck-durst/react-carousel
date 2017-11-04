@@ -12,7 +12,7 @@ class Slider extends React.PureComponent {
       return null;
 
     return (
-      <div style={ sliderStyle }>
+      <div style={ sliderStyle } className="ce-carousel__slider">
         {
           this.props.slides.map((slide, key) => (
             <Slide

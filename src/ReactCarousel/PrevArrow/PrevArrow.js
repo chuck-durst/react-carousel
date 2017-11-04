@@ -9,6 +9,6 @@ export default (isActive) => {
     : Object.assign({}, defaultPrevArrowStyle, lockedArrowStyle);
 
   return (
-    <div style={ this.style }>&#x25c0;</div>
+    <div style={ this.style } className="ce-carousel__prev-arrow">&#x25c0;</div>
   )
 }

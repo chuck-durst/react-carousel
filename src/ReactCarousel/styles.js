@@ -80,3 +80,16 @@ export const defaultNextArrowStyle = defaultPrevArrowStyle;
 export const lockedArrowStyle = {
   color: 'grey'
 };
+
+
+/**-------------------------**\
+ * Dots
+\**-------------------------**/
+
+export const dotStyle = {
+
+};
+
+export const activeDotStyle = {
+
+};
