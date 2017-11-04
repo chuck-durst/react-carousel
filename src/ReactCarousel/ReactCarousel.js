@@ -16,6 +16,7 @@ class ReactCarousel extends React.PureComponent {
     };
 
     this.autoPlayInterval = null;
+    this.isHovered        = false
   }
 
 
@@ -25,7 +26,9 @@ class ReactCarousel extends React.PureComponent {
 
     if (this.props.autoPlay === true) {
       this.autoPlayInterval = setInterval(() => {
-        this._goToSlide();
+        if (this.isHovered === false || this.props.stopOnHover === false) {
+          this._goToSlide();
+        }
       }, this.props.autoPlayDelay);
     }
   }
@@ -114,6 +117,17 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  /**
+   * Defines if the component is hovered
+   * This will be useful to stop the auto play
+   * @param isHover
+   * @private
+   */
+  _handleMouseHover = (isHover) => {
+    this.isHovered = isHover;
+  };
+
+
   render() {
     const prevArrow = this.props.showArrows === true
       ? this._getPrevArrow()
@@ -126,7 +140,12 @@ class ReactCarousel extends React.PureComponent {
     const componentStyle = this._getComponentStyle();
 
     return (
-      <div className={ this.props.className } style={ componentStyle }>
+      <div
+        className={ this.props.className }
+        style={ componentStyle }
+        onMouseOver={ () => this._handleMouseHover(true) }
+        onMouseLeave={ () => this._handleMouseHover(false) }
+      >
         { this.props.showArrows === true &&
           <div onClick={ () => this._goToSlide(this.state.activeSlide - 1) } style={ arrowContainerStyle }>
             { prevArrow }
