@@ -3,7 +3,7 @@ import React          from 'react'
 import ReactCarousel  from './ReactCarousel'
 import NextArrow      from './ReactCarousel/NextArrow'
 import PrevArrow      from './ReactCarousel/PrevArrow'
-
+import Dots           from './ReactCarousel/Dot'
 import './App.scss'
 
 
@@ -14,7 +14,7 @@ class App extends React.PureComponent {
     this.settings = {
       className       : 'react-carousel',
       showArrows      : true,
-      //showDots        : true,
+      showDots        : true,
       //autoPlay        : false,
       //autoPlayDelay   : 2000,
       isInfinite      : true,
@@ -22,7 +22,7 @@ class App extends React.PureComponent {
       //stopOnHover     : false,
       customNextArrow : NextArrow,
       customPrevArrow : PrevArrow,
-      //customDots      : i => i,
+      customDots      : Dots,
       beforeChange    : ()=>console.log('before change'),
       afterChange     : ()=>console.log('after change'),
       //goToSlide       : null,

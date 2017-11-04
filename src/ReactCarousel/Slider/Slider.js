@@ -14,7 +14,9 @@ class Slider extends React.PureComponent {
 
     return (
       <div style={ sliderStyle } className="ce-carousel__slider">
-        <Pagination slides={ this.props.slides } activeSlide={ this.props.activeSlide } />
+        { this.props.showDots === true &&
+          <Pagination slides={ this.props.slides } activeSlide={ this.props.activeSlide } />
+        }
         {
           this.props.slides.map((slide, key) => (
             <Slide
