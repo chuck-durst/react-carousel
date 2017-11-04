@@ -8,6 +8,14 @@ import {
 
 export default ({ slide, activeSlide, index, totalSlides, isAnimated }) => {
 
+  /**
+   * Get the component computed style
+   * depending on the current configuration
+   * Adds the Slide background-image and enables
+   * the transition animation if requested
+   * @returns {*}
+   * @private
+   */
   this._getStyle = () => {
     let stateStyle = activeSlide === index
       ? activeSlideStyle

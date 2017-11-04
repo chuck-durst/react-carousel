@@ -23,8 +23,8 @@ class App extends React.PureComponent {
       customNextArrow : NextArrow,
       customPrevArrow : PrevArrow,
       //customDots      : i => i,
-      //beforeChange    : null,
-      //afterChange     : null,
+      beforeChange    : ()=>console.log('before change'),
+      afterChange     : ()=>console.log('after change'),
       //goToSlide       : null,
       backdropColor   : null
     }

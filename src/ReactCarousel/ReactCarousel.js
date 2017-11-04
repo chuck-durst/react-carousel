@@ -29,12 +29,22 @@ class ReactCarousel extends React.PureComponent {
     }
   }
 
-
+  /**
+   * Initialize the slides
+   * @param slides
+   * @private
+   */
   _initSlides = (slides = []) => {
     this.setState({ slides });
   };
 
 
+  /**
+   * Returns the PrevArrow component depending
+   * on the current configuration
+   * @returns {null}
+   * @private
+   */
   _getPrevArrow = () => {
     return this.props.customPrevArrow
       ? this.props.customPrevArrow(this.props.isInfinite === true || (this.state.activeSlide > 0))
@@ -42,6 +52,12 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  /**
+   * Returns the NextArrow component depending
+   * on the current configuration
+   * @returns {null}
+   * @private
+   */
   _getNextArrow = () => {
     return this.props.customNextArrow
       ? this.props.customNextArrow(this.props.isInfinite === true || (this.state.activeSlide < this.state.slides.length - 1))
@@ -49,6 +65,12 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  /**
+   * Returns the component computed style
+   * Adds a background-color if defined
+   * @returns {*}
+   * @private
+   */
   _getComponentStyle = () => {
     return Object.assign({}, carouselStyle, {
       backgroundColor: this.props.backdropColor
@@ -56,14 +78,20 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  /**
+   * Goes to a defined slide
+   * Checks if the infinite mode is enabled
+   * @param slide
+   * @private
+   */
   _goToSlide = (slide) => {
-    console.log(slide);
+    this.props.beforeChange();
     if (slide < 0 && this.props.isInfinite === true) {
-      this.setState({ activeSlide: this.state.slides.length - 1 })
+      this.setState({ activeSlide: this.state.slides.length - 1 }, this.props.afterChange)
     } else if (slide > this.state.slides.length - 1 && this.props.isInfinite === true) {
-      this.setState({ activeSlide: 0 });
+      this.setState({ activeSlide: 0 }, this.props.afterChange);
     } else if (slide >= 0 && slide <= this.state.slides.length -1) {
-      this.setState({ activeSlide: slide });
+      this.setState({ activeSlide: slide }, this.props.afterChange);
     }
   };
 
@@ -78,7 +106,6 @@ class ReactCarousel extends React.PureComponent {
       : null;
 
     const componentStyle = this._getComponentStyle();
-console.log(componentStyle)
 
     return (
       <div className={ this.props.className } style={ componentStyle }>

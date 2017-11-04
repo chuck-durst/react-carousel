@@ -1,3 +1,7 @@
+/**-------------------------**\
+ * Carousel
+\**-------------------------**/
+
 export const carouselStyle = {
   display         : 'flex',
   alignItems      : 'center',
@@ -7,12 +11,21 @@ export const carouselStyle = {
 };
 
 
+/**-------------------------**\
+ * Slider
+\**-------------------------**/
+
 export const sliderStyle = {
   position  : 'relative',
   width     : '100%',
   height    : '100%',
   overflow  : 'hidden'
 };
+
+
+/**-------------------------**\
+ * Slides
+\**-------------------------**/
 
 export const slideStyle = {
   position            : 'absolute',
@@ -42,6 +55,11 @@ export const nextSlideStyle = {
   opacity   : 0
 };
 
+
+/**-------------------------**\
+ * Arrows
+\**-------------------------**/
+
 export const arrowContainerStyle = {
   height: 'inherit',
   width : 'initial'
@@ -53,7 +71,8 @@ export const defaultPrevArrowStyle = {
   display         : 'flex',
   alignItems      : 'center',
   justifyContent  : 'center',
-  cursor          : 'pointer'
+  cursor          : 'pointer',
+  userSelect      : 'none'
 };
 
 export const defaultNextArrowStyle = defaultPrevArrowStyle;
