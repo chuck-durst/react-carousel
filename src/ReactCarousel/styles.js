@@ -37,22 +37,20 @@ export const slideStyle = {
   backgroundSize      : 'contain',
   backgroundPosition  : 'center',
   backgroundRepeat    : 'no-repeat',
-  transition          : 'transform 0.3s ease-out, opacity 0.4s ease-out',
+  transition          : 'transform 0.4s ease-out',
 };
 
 export const activeSlideStyle = {
-  transform : 'translate3D(0, 0, 0)',
+  transform : 'translate3D(0, 0, 0) scale(0.9)',
   opacity   : 1
 };
 
 export const prevSlideStyle = {
-  transform : 'translate3D(-100%, 0, 0)',
- // opacity   : 0
+  transform : 'translate3D(-100%, 0, 0) scale(0.9)',
 };
 
 export const nextSlideStyle = {
-  transform : 'translate3D(100%, 0, 0)',
- // opacity   : 0
+  transform : 'translate3D(100%, 0, 0) scale(0.9)',
 };
 
 

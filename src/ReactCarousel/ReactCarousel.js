@@ -1,6 +1,7 @@
 import React      from 'react'
 
-import Slider from './Slider'
+import Slider   from './Slider'
+import debounce from './debounce'
 
 import {
   carouselStyle,
@@ -138,6 +139,16 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  _handlePrevClick = debounce(() => {
+    this._goToSlide(this.state.activeSlide - 1)
+  }, 200);
+
+
+  _handleNextClick = debounce(() => {
+    this._goToSlide(this.state.activeSlide + 1)
+  }, 200);
+
+
   render() {
     const prevArrow = this.props.showArrows === true
       ? this._getPrevArrow()
@@ -157,7 +168,7 @@ class ReactCarousel extends React.PureComponent {
         onMouseLeave={ () => this._handleMouseHover(false) }
       >
         { this.props.showArrows === true &&
-          <div onClick={ () => this._goToSlide(this.state.activeSlide - 1) } style={ arrowContainerStyle }>
+          <div onClick={ this._handlePrevClick } style={ arrowContainerStyle }>
             { prevArrow }
           </div>
         }
@@ -171,7 +182,7 @@ class ReactCarousel extends React.PureComponent {
           moveDirection={ this.state.moveDirection }
         />
         { this.props.showArrows === true &&
-          <div onClick={ () => this._goToSlide() } style={ arrowContainerStyle }>
+          <div onClick={ this._handleNextClick } style={ arrowContainerStyle }>
             { nextArrow }
           </div>
         }

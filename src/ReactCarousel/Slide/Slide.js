@@ -33,25 +33,30 @@ class Slide extends React.Component {
 
 
   shouldComponentUpdate(nextProps) {
-    return !(this.props.activeSlide !== this.props.index && nextProps.activeSlide !== nextProps.index);
+    return this.props.activeSlide === this.props.index || nextProps.activeSlide === nextProps.index;
   }
 
 
   componentWillReceiveProps(nextProps) {
     let direction = nextProps.moveDirection;
 
-    // Set the slide at the good place if necessary
     if (nextProps.activeSlide !== this.props.activeSlide) {
-      if (nextProps.activeSlide === nextProps.index) {
-        if (direction === 'right') {
-          this.slide(100, false);
-        } else if (direction === 'left') {
-          this.slide(-100, false);
-        }
-      }
 
-      // Move the slide
-      this.moveSlide(nextProps, direction);
+      // Set the slide at the good place if necessary
+      if (this.props.activeSlide === this.props.index || nextProps.activeSlide === nextProps.index) {
+        if (nextProps.activeSlide === nextProps.index) {
+          if (direction === 'right') {
+            this.slide(100, false);
+          } else if (direction === 'left') {
+            this.slide(-100, false);
+          }
+        }
+
+        // Move the slide
+        this.moveSlide(nextProps, direction);
+      } else {
+        this.slideEl.style.transition = 'none';
+      }
     }
   }
 
@@ -99,15 +104,21 @@ class Slide extends React.Component {
   };
 
 
+  /**
+   * Slide the current slide
+   * @param x {int}               : the slide coordinates
+   * @param isAnimated {boolean}  : defines if the move must be animated
+   */
   slide = (x, isAnimated = true) => {
     let slideEl = this.slideEl;
-    slideEl.style.transition = isAnimated ? this.transition : 'none';
 
-    slideEl.style.transform = `translate3d(${ x }%, 0, 0)`;
+    slideEl.style.transition  = isAnimated ? this.transition : 'none';
+    slideEl.style.transform   = `translate3d(${ x }%, 0, 0) scale(0.9)`;
   };
 
 
   render() {
+    console.log(this.props.index);
 
     return (
       <div
