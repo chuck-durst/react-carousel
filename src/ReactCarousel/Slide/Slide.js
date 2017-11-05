@@ -32,18 +32,25 @@ class Slide extends React.Component {
   }
 
 
+  shouldComponentUpdate(nextProps) {
+    return !(this.props.activeSlide !== this.props.index && nextProps.activeSlide !== nextProps.index);
+  }
+
+
   componentWillReceiveProps(nextProps) {
     let direction = nextProps.moveDirection;
 
-    // Set the slide at the good place
+    // Set the slide at the good place if necessary
     if (nextProps.activeSlide !== this.props.activeSlide) {
-      if (this.props.activeSlide !== nextProps.index && direction === 'right') {
-        this.slide(100, false);
-      } else if (this.props.activeSlide !== nextProps.index && direction === 'left') {
-        this.slide(-100, false);
+      if (nextProps.activeSlide === nextProps.index) {
+        if (direction === 'right') {
+          this.slide(100, false);
+        } else if (direction === 'left') {
+          this.slide(-100, false);
+        }
       }
 
-      // Do animation
+      // Move the slide
       this.moveSlide(nextProps, direction);
     }
   }
@@ -56,12 +63,14 @@ class Slide extends React.Component {
    * @param direction
    */
   moveSlide = (nextProps, direction) => {
-    if (this.props.activeSlide === nextProps.index && direction === 'right') {
-      this.slide(-100);
-    } else if (this.props.activeSlide === nextProps.index && direction === 'left') {
-      this.slide(100);
+    if (this.props.activeSlide === nextProps.index) {
+      setTimeout(() => {
+        this.slide(direction === 'right' ? -100 : 100);
+      }, 100);
     } else if (nextProps.activeSlide === nextProps.index) {
-      this.slide(0);
+      setTimeout(() => {
+        this.slide(0);
+      }, 100);
     }
   };
 

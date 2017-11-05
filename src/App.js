@@ -34,10 +34,10 @@ class App extends React.PureComponent {
   render() {
     const slides = [
       'http://s3-us-west-2.amazonaws.com/files.geekgirlauthority.com/wp-content/uploads/2015/09/zero.jpg',
-      'https://www.marchcomms.com/wp-content/uploads/2013/06/Number-One.jpg',/*
+      'https://www.marchcomms.com/wp-content/uploads/2013/06/Number-One.jpg',
       'http://www.clker.com/cliparts/E/x/J/x/m/z/blue-number-two-hi.png',
       'http://media.gizmodo.co.uk/wp-content/uploads/2013/02/Three-4G.jpg',
-      'http://www.clker.com/cliparts/1/9/5/d/13455846051729363694Animal%20Number%20Four.svg',*/
+      'http://www.clker.com/cliparts/1/9/5/d/13455846051729363694Animal%20Number%20Four.svg',
     ];
 
     return (
