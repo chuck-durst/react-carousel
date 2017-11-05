@@ -1,4 +1,5 @@
 import React      from 'react'
+import ReactDOM   from 'react-dom'
 
 import {
   slideStyle,
@@ -13,7 +14,10 @@ class Slide extends React.Component {
 
     this.state = {
       style: null
-    }
+    };
+
+    this.slideEl    = null;
+    this.transition = null;
   }
 
 
@@ -22,9 +26,44 @@ class Slide extends React.Component {
   }
 
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ style: this._getStyle(nextProps) })
+  componentDidMount() {
+    this.slideEl    = ReactDOM.findDOMNode(this.refs.slide);
+    this.transition = this.slideEl.style.transition;
   }
+
+
+  componentWillReceiveProps(nextProps) {
+    let direction = nextProps.moveDirection;
+
+    // Set the slide at the good place
+    if (nextProps.activeSlide !== this.props.activeSlide) {
+      if (this.props.activeSlide !== nextProps.index && direction === 'right') {
+        this.slide(100, false);
+      } else if (this.props.activeSlide !== nextProps.index && direction === 'left') {
+        this.slide(-100, false);
+      }
+
+      // Do animation
+      this.moveSlide(nextProps, direction);
+    }
+  }
+
+
+  /**
+   * Move the slide at the good place depending on its current place
+   * and on the slide direction
+   * @param nextProps
+   * @param direction
+   */
+  moveSlide = (nextProps, direction) => {
+    if (this.props.activeSlide === nextProps.index && direction === 'right') {
+      this.slide(-100);
+    } else if (this.props.activeSlide === nextProps.index && direction === 'left') {
+      this.slide(100);
+    } else if (nextProps.activeSlide === nextProps.index) {
+      this.slide(0);
+    }
+  };
 
 
   /**
@@ -51,10 +90,19 @@ class Slide extends React.Component {
   };
 
 
+  slide = (x, isAnimated = true) => {
+    let slideEl = this.slideEl;
+    slideEl.style.transition = isAnimated ? this.transition : 'none';
+
+    slideEl.style.transform = `translate3d(${ x }%, 0, 0)`;
+  };
+
+
   render() {
 
     return (
       <div
+        ref="slide"
         style={ this.state.style }
         className="ce-carousel__slide"
         onTouchMove={ this.props.onTouchMove }

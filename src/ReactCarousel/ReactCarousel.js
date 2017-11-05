@@ -11,8 +11,9 @@ class ReactCarousel extends React.PureComponent {
     super(props);
 
     this.state = {
-      slides       : [],
-      activeSlide  : 0
+      slides        : [],
+      activeSlide   : 0,
+      moveDirection : null
     };
 
     this.autoPlayInterval = null;
@@ -108,11 +109,20 @@ class ReactCarousel extends React.PureComponent {
   _goToSlide = (slide = this.state.activeSlide + 1) => {
     this.props.beforeChange();
     if (slide < 0 && this.props.isInfinite === true) {
-      this.setState({ activeSlide: this.state.slides.length - 1 }, this.props.afterChange)
+      this.setState({
+        activeSlide   : this.state.slides.length - 1,
+        moveDirection : 'left'
+      }, this.props.afterChange)
     } else if (slide > this.state.slides.length - 1 && this.props.isInfinite === true) {
-      this.setState({ activeSlide: 0 }, this.props.afterChange);
+      this.setState({
+        activeSlide   : 0,
+        moveDirection : 'right'
+      }, this.props.afterChange);
     } else if (slide >= 0 && slide <= this.state.slides.length -1) {
-      this.setState({ activeSlide: slide }, this.props.afterChange);
+      this.setState({
+        activeSlide   : slide,
+        moveDirection : slide > this.state.activeSlide ? 'right' : 'left'
+      }, this.props.afterChange);
     }
   };
 
@@ -158,6 +168,7 @@ class ReactCarousel extends React.PureComponent {
           slideOnMobile={ this.props.slideOnMobile }
           Dots={ this.props.customDots }
           showDots={ this.props.showDots }
+          moveDirection={ this.state.moveDirection }
         />
         { this.props.showArrows === true &&
           <div onClick={ () => this._goToSlide() } style={ arrowContainerStyle }>

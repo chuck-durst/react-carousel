@@ -33,6 +33,8 @@ class Slider extends React.PureComponent {
 
 
   handleSlideTouchEnd = (e) => {
+    console.log(this.refs);
+    this.refs['slide--2'].slide(0);
     console.log('touch end');
   };
 
@@ -51,6 +53,7 @@ class Slider extends React.PureComponent {
           this.props.slides.map((slide, key) => (
             <Slide
               key={ key }
+              ref={ `slide--${ key }` }
               index={ key }
               slide={ slide }
               isAnimated={ this.props.isAnimated }
@@ -58,6 +61,7 @@ class Slider extends React.PureComponent {
               activeSlide={ this.props.activeSlide }
               onTouchMove={ this.handleSlideTouchMove }
               onTouchEnd={ this.handleSlideTouchEnd }
+              moveDirection={ this.props.moveDirection }
             />
           ))
         }

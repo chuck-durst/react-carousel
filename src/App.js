@@ -26,17 +26,18 @@ class App extends React.PureComponent {
       beforeChange    : ()=>console.log('before change'),
       afterChange     : ()=>console.log('after change'),
       goToSlide       : null,
-      backdropColor   : null,
+      backdropColor   : 'rgba(0,0,0,0.6)',
     };
   }
 
 
   render() {
     const slides = [
-      'http://fakeimg.pl/300x400',
-      'http://fakeimg.pl/400',
-      'http://fakeimg.pl/500x750',
-      'http://fakeimg.pl/600',
+      'http://s3-us-west-2.amazonaws.com/files.geekgirlauthority.com/wp-content/uploads/2015/09/zero.jpg',
+      'https://www.marchcomms.com/wp-content/uploads/2013/06/Number-One.jpg',/*
+      'http://www.clker.com/cliparts/E/x/J/x/m/z/blue-number-two-hi.png',
+      'http://media.gizmodo.co.uk/wp-content/uploads/2013/02/Three-4G.jpg',
+      'http://www.clker.com/cliparts/1/9/5/d/13455846051729363694Animal%20Number%20Four.svg',*/
     ];
 
     return (
