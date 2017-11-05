@@ -37,7 +37,7 @@ export const slideStyle = {
   backgroundSize      : 'contain',
   backgroundPosition  : 'center',
   backgroundRepeat    : 'no-repeat',
-  transition          : 'transform 0.3s ease-out, opacity 0.4s ease-out'
+  transition          : 'transform 1s ease-out, opacity 0.4s ease-out',
 };
 
 export const activeSlideStyle = {
@@ -47,12 +47,12 @@ export const activeSlideStyle = {
 
 export const prevSlideStyle = {
   transform : 'translate3D(-100%, 0, 0)',
-  opacity   : 0
+ // opacity   : 0
 };
 
 export const nextSlideStyle = {
   transform : 'translate3D(100%, 0, 0)',
-  opacity   : 0
+ // opacity   : 0
 };
 
 

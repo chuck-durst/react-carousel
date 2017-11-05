@@ -155,6 +155,7 @@ class ReactCarousel extends React.PureComponent {
           slides={ this.state.slides }
           activeSlide={ this.state.activeSlide }
           isAnimated={ this.props.isAnimated }
+          slideOnMobile={ this.props.slideOnMobile }
           Dots={ this.props.customDots }
           showDots={ this.props.showDots }
         />

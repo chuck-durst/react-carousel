@@ -7,6 +7,36 @@ import { sliderStyle}  from '../styles'
 
 
 class Slider extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.slideOnMobile  = false;
+  }
+
+
+  componentDidMount() {
+    // Store a variable that defines if the slides can be dragged on mobile/tablet
+    this.slideOnMobile = (this.props.slideOnMobile === true && this._isMobile() === true);
+  }
+
+
+  _isMobile = () => {
+    return(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+  };
+
+
+  handleSlideTouchMove = (e) => {
+    if (this.slideOnMobile === true) {
+      console.log(e, e.targetTouches[0].pageX, e.targetTouches[0].pageY)
+    }
+  };
+
+
+  handleSlideTouchEnd = (e) => {
+    console.log('touch end');
+  };
+
+
   render() {
 
     if (!this.props.slides || this.props.slides.length === 0)
@@ -26,6 +56,8 @@ class Slider extends React.PureComponent {
               isAnimated={ this.props.isAnimated }
               totalSlides={ this.props.slides.length }
               activeSlide={ this.props.activeSlide }
+              onTouchMove={ this.handleSlideTouchMove }
+              onTouchEnd={ this.handleSlideTouchEnd }
             />
           ))
         }

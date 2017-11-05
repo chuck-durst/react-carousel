@@ -6,7 +6,26 @@ import {
   prevSlideStyle,
   nextSlideStyle    }  from '../styles'
 
-export default ({ slide, activeSlide, index, totalSlides, isAnimated }) => {
+
+class Slide extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      style: null
+    }
+  }
+
+
+  componentWillMount() {
+    this.setState({ style: this._getStyle(this.props) });
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ style: this._getStyle(nextProps) })
+  }
+
 
   /**
    * Get the component computed style
@@ -16,22 +35,33 @@ export default ({ slide, activeSlide, index, totalSlides, isAnimated }) => {
    * @returns {*}
    * @private
    */
-  this._getStyle = () => {
-    let stateStyle = activeSlide === index
+  _getStyle = (props) => {
+    let stateStyle = props.activeSlide === props.index
       ? activeSlideStyle
-      : index > activeSlide
+      : props.index > props.activeSlide
         ? nextSlideStyle
         : prevSlideStyle;
 
     return Object.assign({}, slideStyle, stateStyle, {
-      backgroundImage : `url(${ slide })`,
-      transition      : isAnimated === true
-                          ? slideStyle.transition
-                          : 'none'
+      backgroundImage : `url(${ props.slide })`,
+      transition      : props.isAnimated === true
+        ? slideStyle.transition
+        : 'none'
     });
   };
 
-  return (
-    <div style={ this._getStyle() } className="ce-carousel__slide" />
-  )
+
+  render() {
+
+    return (
+      <div
+        style={ this.state.style }
+        className="ce-carousel__slide"
+        onTouchMove={ this.props.onTouchMove }
+        onTouchEnd={ this.props.onTouchEnd }
+      />
+    )
+  }
 }
+
+export default Slide;
