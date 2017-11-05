@@ -92,6 +92,7 @@ export const paginationStyle = {
   display         : 'flex',
   alignItems      : 'center',
   justifyContent  : 'center',
+  flexWrap        : 'wrap',
   width           : '100%',
 };
 
