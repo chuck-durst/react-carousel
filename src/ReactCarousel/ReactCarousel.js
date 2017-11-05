@@ -139,14 +139,20 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  /**
+   * Debounce if animated
+   */
   _handlePrevClick = debounce(() => {
     this._goToSlide(this.state.activeSlide - 1)
-  }, 200);
+  }, this.props.isAnimated ? 200 : 0);
 
 
+  /**
+   * Debounce if animated
+   */
   _handleNextClick = debounce(() => {
     this._goToSlide(this.state.activeSlide + 1)
-  }, 200);
+  }, this.props.isAnimated ? 200 : 0);
 
 
   render() {
