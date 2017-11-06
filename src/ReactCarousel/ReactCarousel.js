@@ -145,16 +145,17 @@ class ReactCarousel extends React.PureComponent {
    */
   _handlePrevClick = debounce(() => {
     this._goToSlide(this.state.activeSlide - 1)
-  }, this.props.isAnimated ? 100 : 0);
+  }, this.props.isAnimated ? this.props.slidesSpeed : 0);
 
 
   /**
    * Debounce if animated
+   * the slideSpeed prop is used as the debounce value
    * @private
    */
   _handleNextClick = debounce(() => {
     this._goToSlide(this.state.activeSlide + 1)
-  }, this.props.isAnimated ? 100 : 0);
+  }, this.props.isAnimated ? this.props.slidesSpeed : 0);
 
 
   /**
@@ -208,6 +209,7 @@ class ReactCarousel extends React.PureComponent {
           slides={ this.state.slides }
           activeSlide={ this.state.activeSlide }
           isAnimated={ this.props.isAnimated }
+          slidesSpeed={ this.props.slidesSpeed }
           slideOnMobile={ this.props.slideOnMobile }
           Dots={ this.props.customDots }
           showDots={ this.props.showDots }

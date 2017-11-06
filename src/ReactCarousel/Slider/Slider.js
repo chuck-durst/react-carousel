@@ -57,6 +57,7 @@ class Slider extends React.PureComponent {
               index={ key }
               slide={ slide }
               isAnimated={ this.props.isAnimated }
+              slidesSpeed={ this.props.slidesSpeed }
               totalSlides={ this.props.slides.length }
               activeSlide={ this.props.activeSlide }
               onTouchMove={ this.handleSlideTouchMove }

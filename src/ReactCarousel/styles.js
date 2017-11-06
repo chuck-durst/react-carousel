@@ -7,7 +7,8 @@ export const carouselStyle = {
   alignItems      : 'center',
   justifyContent  : 'space-between',
   width           : '100%',
-  height          : '100%'
+  height          : '100%',
+  outline         : 0
 };
 
 

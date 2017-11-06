@@ -17,6 +17,7 @@ class App extends React.PureComponent {
       showDots        : true,
       autoPlay        : false,
       autoPlayDelay   : 5000,
+      slidesSpeed     : 150,
       isInfinite      : true,
       isAnimated      : true,
       stopOnHover     : false,

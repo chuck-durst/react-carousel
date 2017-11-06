@@ -98,7 +98,7 @@ class Slide extends React.Component {
     return Object.assign({}, slideStyle, stateStyle, {
       backgroundImage : `url(${ props.slide })`,
       transition      : props.isAnimated === true
-        ? slideStyle.transition
+        ? `transform ${ props.slidesSpeed }ms ease-out`
         : 'none'
     });
   };
