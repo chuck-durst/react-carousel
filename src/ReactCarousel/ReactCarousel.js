@@ -141,18 +141,42 @@ class ReactCarousel extends React.PureComponent {
 
   /**
    * Debounce if animated
+   * @private
    */
   _handlePrevClick = debounce(() => {
     this._goToSlide(this.state.activeSlide - 1)
-  }, this.props.isAnimated ? 200 : 0);
+  }, this.props.isAnimated ? 100 : 0);
 
 
   /**
    * Debounce if animated
+   * @private
    */
   _handleNextClick = debounce(() => {
     this._goToSlide(this.state.activeSlide + 1)
-  }, this.props.isAnimated ? 200 : 0);
+  }, this.props.isAnimated ? 100 : 0);
+
+
+  /**
+   * Allow the user to use his keyboard arrow
+   * keys to navigated through the slides
+   * @param e
+   * @returns {null}
+   * @private
+   */
+  _handleKeyUp = (e) => {
+    const which = e.which;
+
+    if (this.props.allowKeyboard === false || !which)
+      return null;
+
+    switch(which) {
+      case 39:
+        return this._handleNextClick();
+      case 37:
+        return this._handlePrevClick();
+    }
+  };
 
 
   render() {
@@ -168,6 +192,8 @@ class ReactCarousel extends React.PureComponent {
 
     return (
       <div
+        tabIndex="0"
+        onKeyUp={ this._handleKeyUp }
         className={ this.props.className }
         style={ componentStyle }
         onMouseOver={ () => this._handleMouseHover(true) }

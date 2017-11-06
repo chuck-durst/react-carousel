@@ -118,7 +118,6 @@ class Slide extends React.Component {
 
 
   render() {
-    console.log(this.props.index);
 
     return (
       <div

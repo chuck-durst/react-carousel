@@ -37,7 +37,7 @@ export const slideStyle = {
   backgroundSize      : 'contain',
   backgroundPosition  : 'center',
   backgroundRepeat    : 'no-repeat',
-  transition          : 'transform 0.4s ease-out',
+  transition          : 'transform 0.2s ease-out',
 };
 
 export const activeSlideStyle = {

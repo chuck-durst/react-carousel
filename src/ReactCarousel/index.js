@@ -5,7 +5,7 @@ import PrevArrow      from './PrevArrow'
 import NextArrow      from './NextArrow'
 import Dot            from './Dot'
 
-ReactCarousel.propTypes = {
+ReactCarousel.propTypes = { // TODO add default classes overwritting
   slides          : PropTypes.arrayOf(PropTypes.string).isRequired,
   className       : PropTypes.string,
   showArrows      : PropTypes.bool,
@@ -16,6 +16,7 @@ ReactCarousel.propTypes = {
   isAnimated      : PropTypes.bool,
   stopOnHover     : PropTypes.bool,
   slideOnMobile   : PropTypes.bool,
+  allowKeyboard   : PropTypes.bool,
   customNextArrow : PropTypes.func,
   customPrevArrow : PropTypes.func,
   customDots      : PropTypes.func,
@@ -37,6 +38,7 @@ ReactCarousel.defaultProps = {
   isAnimated      : true,
   stopOnHover     : false,
   slideOnMobile   : true,
+  allowKeyboard   : true,
   customNextArrow : NextArrow,
   customPrevArrow : PrevArrow,
   customDots      : Dot,
