@@ -5,12 +5,16 @@ import Dot from '../Dot'
 import { paginationStyle } from '../styles'
 
 
-export default ({ slides, activeSlide }) => {
+export default ({ slides, activeSlide, onPaginationClick }) => {
   return (
     <div className="ce-carousel__pagination" style={ paginationStyle }>
       {
         slides.map((slide, key) => {
-          return <Dot key={ key } index={ key } isActive={ key === activeSlide }/>
+          return (
+            <div key={ key } onClick={ () => onPaginationClick(key) }>
+              <Dot index={ key } isActive={ key === activeSlide }/>
+            </div>
+            )
         })
       }
     </div>

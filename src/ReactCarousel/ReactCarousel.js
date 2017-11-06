@@ -180,6 +180,15 @@ class ReactCarousel extends React.PureComponent {
   };
 
 
+  /**
+   * Triggered when a pagination dot is clicked
+   * @param slideIndex
+   */
+  onPaginationClick = (slideIndex) => {
+    this._goToSlide(slideIndex);
+  };
+
+
   render() {
     const prevArrow = this.props.showArrows === true
       ? this._getPrevArrow()
@@ -214,6 +223,7 @@ class ReactCarousel extends React.PureComponent {
           Dots={ this.props.customDots }
           showDots={ this.props.showDots }
           moveDirection={ this.state.moveDirection }
+          onPaginationClick={ this.onPaginationClick }
         />
         { this.props.showArrows === true &&
           <div onClick={ this._handleNextClick } style={ arrowContainerStyle }>

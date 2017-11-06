@@ -103,7 +103,8 @@ export const dotStyle = {
   height          : '10px',
   margin          : '5px',
   borderRadius    : '100%',
-  backgroundColor : 'grey'
+  backgroundColor : 'grey',
+  cursor          : 'pointer'
 };
 
 export const activeDotStyle = {
