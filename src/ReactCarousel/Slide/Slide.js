@@ -17,6 +17,7 @@ class Slide extends React.Component {
     };
 
     this.slideEl    = null;
+    this.stay       = false;
     this.transition = null;
   }
 
@@ -40,7 +41,7 @@ class Slide extends React.Component {
   componentWillReceiveProps(nextProps) {
     let direction = nextProps.moveDirection;
 
-    if (nextProps.activeSlide !== this.props.activeSlide) {
+    if (nextProps.activeSlide !== this.props.activeSlide && this.stay === false) {
 
       // Set the slide at the good place if necessary
       if (this.props.activeSlide === this.props.index || nextProps.activeSlide === nextProps.index) {
@@ -53,31 +54,13 @@ class Slide extends React.Component {
         }
 
         // Move the slide
-        this.moveSlide(nextProps, direction);
+        this._moveSlide(nextProps, direction);
       } else {
         this.slideEl.style.transition = 'none';
       }
     }
+    this.stay = false;
   }
-
-
-  /**
-   * Move the slide at the good place depending on its current place
-   * and on the slide direction
-   * @param nextProps
-   * @param direction
-   */
-  moveSlide = (nextProps, direction) => {
-    if (this.props.activeSlide === nextProps.index) {
-      setTimeout(() => {
-        this.slide(direction === 'right' ? -100 : 100);
-      }, 100);
-    } else if (nextProps.activeSlide === nextProps.index) {
-      setTimeout(() => {
-        this.slide(0);
-      }, 100);
-    }
-  };
 
 
   /**
@@ -104,16 +87,45 @@ class Slide extends React.Component {
   };
 
 
+  _handleTouchMove = (e) => {
+    return this.props.onTouchMove(e, this.props.index);
+  };
+
+
   /**
-   * Slide the current slide
+   * Move the slide at the good place depending on its current place
+   * and on the slide direction
+   * @param nextProps
+   * @param direction
+   * @private
+   */
+  _moveSlide = (nextProps, direction) => {
+    if (this.props.activeSlide === nextProps.index) {
+      setTimeout(() => {
+        this.slide(direction === 'right' ? -100 : 100);
+      }, 100);
+    } else if (nextProps.activeSlide === nextProps.index) {
+      setTimeout(() => {
+        this.slide(0);
+      }, 100);
+    }
+  };
+
+
+  /**
+   * Slide the slide... haha...
    * @param x {int}               : the slide coordinates
    * @param isAnimated {boolean}  : defines if the move must be animated
+   * @param unit {string}         : the distance unity that must be used
    */
-  slide = (x, isAnimated = true) => {
+  slide = (x, isAnimated = true, unit = '%', stay = false) => {
     let slideEl = this.slideEl;
 
     slideEl.style.transition  = isAnimated ? this.transition : 'none';
-    slideEl.style.transform   = `translate3d(${ x }%, 0, 0) scale(0.9)`;
+    slideEl.style.transform   = `translate3d(${ x }${ unit }, 0, 0) scale(0.9)`;
+
+    /* If stay === true, the next move will be ignored */
+    this.stay = stay;
   };
 
 
@@ -124,7 +136,7 @@ class Slide extends React.Component {
         ref="slide"
         style={ this.state.style }
         className="ce-carousel__slide"
-        onTouchMove={ this.props.onTouchMove }
+        onTouchMove={ this._handleTouchMove }
         onTouchEnd={ this.props.onTouchEnd }
       />
     )

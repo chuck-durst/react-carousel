@@ -29,7 +29,7 @@ class ReactCarousel extends React.PureComponent {
     if (this.props.autoPlay === true) {
       this.autoPlayInterval = setInterval(() => {
         if (this.isHovered === false || this.props.stopOnHover === false) {
-          this._goToSlide();
+          this.goToSlide();
         }
       }, this.props.autoPlayDelay);
     }
@@ -42,7 +42,7 @@ class ReactCarousel extends React.PureComponent {
     }
 
     if (nextProps.goToSlide && nextProps.goToSlide !== this.props.goToSlide && this.state.slides[nextProps.goToSlide]) {
-      this._goToSlide(nextProps.goToSlide);
+      this.goToSlide(nextProps.goToSlide);
     }
   }
 
@@ -107,7 +107,7 @@ class ReactCarousel extends React.PureComponent {
    * @param slide
    * @private
    */
-  _goToSlide = (slide = this.state.activeSlide + 1) => {
+  goToSlide = (slide = this.state.activeSlide + 1) => {
     this.props.beforeChange();
     if (slide < 0 && this.props.isInfinite === true) {
       this.setState({
@@ -144,7 +144,7 @@ class ReactCarousel extends React.PureComponent {
    * @private
    */
   _handlePrevClick = debounce(() => {
-    this._goToSlide(this.state.activeSlide - 1)
+    this.goToSlide(this.state.activeSlide - 1)
   }, this.props.isAnimated ? this.props.slidesSpeed : 0);
 
 
@@ -154,7 +154,7 @@ class ReactCarousel extends React.PureComponent {
    * @private
    */
   _handleNextClick = debounce(() => {
-    this._goToSlide(this.state.activeSlide + 1)
+    this.goToSlide(this.state.activeSlide + 1)
   }, this.props.isAnimated ? this.props.slidesSpeed : 0);
 
 
@@ -176,16 +176,9 @@ class ReactCarousel extends React.PureComponent {
         return this._handleNextClick();
       case 37:
         return this._handlePrevClick();
+      default:
+        return null;
     }
-  };
-
-
-  /**
-   * Triggered when a pagination dot is clicked
-   * @param slideIndex
-   */
-  onPaginationClick = (slideIndex) => {
-    this._goToSlide(slideIndex);
   };
 
 
@@ -223,7 +216,7 @@ class ReactCarousel extends React.PureComponent {
           Dots={ this.props.customDots }
           showDots={ this.props.showDots }
           moveDirection={ this.state.moveDirection }
-          onPaginationClick={ this.onPaginationClick }
+          goToSlide={ this.goToSlide }
         />
         { this.props.showArrows === true &&
           <div onClick={ this._handleNextClick } style={ arrowContainerStyle }>
