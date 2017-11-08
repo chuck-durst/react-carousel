@@ -64,6 +64,7 @@ class ReactCarousel extends React.PureComponent {
     this.setState({ slides });
   };
 
+
   /**
    * Launches the automatic play
    * @private

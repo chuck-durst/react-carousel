@@ -11,12 +11,11 @@ class App extends React.PureComponent {
   constructor(props) {
     super(props);
 
-
-
     this.state = {
       isMobile: false
     };
 
+    /** Default settings **/
     this.settings = {
       className       : 'react-carousel',
       showArrows      : true,
@@ -39,6 +38,7 @@ class App extends React.PureComponent {
       slidesClassName : 'slides',
     };
 
+    /** Mobile settings **/
     this.mobileSettings = {
       className       : 'react-carousel',
       showArrows      : false,
@@ -49,12 +49,14 @@ class App extends React.PureComponent {
       backdropColor   : 'rgba(0,0,0,0.6)',
     };
 
-  this.slides  = [
-      'http://s3-us-west-2.amazonaws.com/files.geekgirlauthority.com/wp-content/uploads/2015/09/zero.jpg',
-      'https://www.marchcomms.com/wp-content/uploads/2013/06/Number-One.jpg',
-      'http://www.clker.com/cliparts/E/x/J/x/m/z/blue-number-two-hi.png',
-      'http://media.gizmodo.co.uk/wp-content/uploads/2013/02/Three-4G.jpg',
-      'http://www.clker.com/cliparts/1/9/5/d/13455846051729363694Animal%20Number%20Four.svg',
+    /** Slides **/
+    this.slides  = [
+      'http://fakeimg.pl/350x200/?text=React-carousel',
+      'http://fakeimg.pl/300/',
+      'http://fakeimg.pl/350x200/eeeeee/000',
+      'http://fakeimg.pl/250x100/333333/',
+      'http://fakeimg.pl/200x750/',
+      'http://fakeimg.pl/300/999999/',
     ];
   }
 
@@ -69,9 +71,10 @@ class App extends React.PureComponent {
     this.setState({ isMobile: window.innerWidth < 600 });
   };
 
-  render() {
 
+  render() {
     const settings = this.state.isMobile ? this.mobileSettings : this.settings;
+
     return (
       <div className="app">
         <div className="app__header">
