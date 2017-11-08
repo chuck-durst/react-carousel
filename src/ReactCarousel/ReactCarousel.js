@@ -44,6 +44,9 @@ class ReactCarousel extends React.PureComponent {
     if (nextProps.goToSlide && nextProps.goToSlide !== this.props.goToSlide && this.state.slides[nextProps.goToSlide]) {
       this.goToSlide(nextProps.goToSlide);
     }
+    if (nextProps.autoPlay !== this.props.autoPlay) {
+      clearInterval(this.autoPlayInterval);
+    }
   }
 
 
