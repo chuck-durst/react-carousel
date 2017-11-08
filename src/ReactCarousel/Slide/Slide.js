@@ -135,7 +135,7 @@ class Slide extends React.Component {
       <div
         ref="slide"
         style={ this.state.style }
-        className="ce-carousel__slide"
+        className={ this.props.slidesClassName }
         onTouchMove={ this._handleTouchMove }
         onTouchEnd={ this.props.onTouchEnd }
       />

@@ -18,7 +18,7 @@ class App extends React.PureComponent {
       autoPlay        : false,
       autoPlayDelay   : 5000,
       slidesSpeed     : 150,
-      isInfinite      : false,
+      isInfinite      : true,
       isAnimated      : true,
       stopOnHover     : false,
       allowKeyboard   : true,
@@ -29,6 +29,8 @@ class App extends React.PureComponent {
       afterChange     : ()=>console.log('after change'),
       goToSlide       : null,
       backdropColor   : 'rgba(0,0,0,0.6)',
+      sliderClassName : 'slider',
+      slidesClassName : 'slides',
     };
   }
 

@@ -156,7 +156,7 @@ class Slider extends React.PureComponent {
       return null;
 
     return (
-      <div style={ sliderStyle } className="ce-carousel__slider" ref="slider">
+      <div style={ sliderStyle } className={ this.props.sliderClassName } ref="slider">
         { this.props.showDots === true &&
           <Pagination
             slides={ this.props.slides }
@@ -178,6 +178,7 @@ class Slider extends React.PureComponent {
               onTouchMove={ this.handleSlideTouchMove }
               onTouchEnd={ this.handleSlideTouchEnd }
               moveDirection={ this.props.moveDirection }
+              slidesClassName={ this.props.slidesClassName }
             />
           ))
         }

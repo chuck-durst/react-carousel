@@ -218,6 +218,8 @@ class ReactCarousel extends React.PureComponent {
           showDots={ this.props.showDots }
           moveDirection={ this.state.moveDirection }
           goToSlide={ this.goToSlide }
+          sliderClassName={ this.props.sliderClassName }
+          slidesClassName={ this.props.slidesClassName }
         />
         { this.props.showArrows === true &&
           <div onClick={ this._handleNextClick } style={ arrowContainerStyle }>

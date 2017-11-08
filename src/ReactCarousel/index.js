@@ -24,7 +24,9 @@ ReactCarousel.propTypes = { // TODO add default classes overwritting
   beforeChange    : PropTypes.func,
   afterChange     : PropTypes.func,
   goToSlide       : PropTypes.number,
-  backdropColor   : PropTypes.string
+  backdropColor   : PropTypes.string,
+  sliderClassName : PropTypes.string,
+  slidesClassName : PropTypes.string,
 };
 
 
@@ -47,7 +49,9 @@ ReactCarousel.defaultProps = {
   beforeChange    : null,
   afterChange     : null,
   goToSlide       : null,
-  backdropColor   : null
+  backdropColor   : null,
+  sliderClassName : 'ce-carousel__slider',
+  slidesClassName : 'ce-carousel__slide',
 };
 
 export default ReactCarousel;
