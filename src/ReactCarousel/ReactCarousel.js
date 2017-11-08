@@ -210,6 +210,7 @@ class ReactCarousel extends React.PureComponent {
         <Slider
           slides={ this.state.slides }
           activeSlide={ this.state.activeSlide }
+          isInfinite={ this.props.isInfinite }
           isAnimated={ this.props.isAnimated }
           slidesSpeed={ this.props.slidesSpeed }
           slideOnMobile={ this.props.slideOnMobile }

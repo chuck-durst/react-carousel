@@ -9,7 +9,7 @@ import { sliderStyle}  from '../styles'
 const SLIDE_MARGIN    = 30;
 const MAX_SLIDE_SPEED = 3;
 
-class Slider extends React.PureComponent { // TODO Check is isInfinite everywhere!
+class Slider extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -86,13 +86,25 @@ class Slider extends React.PureComponent { // TODO Check is isInfinite everywher
 
       // Check if all the slides exist
       if (this.prevDragSlide && this.nextDragSlide && this.draggedSlide) {
-        const dragDistance = e.targetTouches[0].pageX - this.pageX;
 
-        // Move the slides to their next position
-        this.draggedSlide.slide(this.dragDistance, false, 'px');
-        this.nextDragSlide.slide(this.dragDistance + this.activeSlideWidth + SLIDE_MARGIN, false, 'px');
-        this.prevDragSlide.slide(this.dragDistance - this.activeSlideWidth - SLIDE_MARGIN, false, 'px');
+        // The following value must never be equal to zero or the slider won't be able to
+        // move when the infinite mode is disabled
+        const dragDistance  = e.targetTouches[0].pageX - this.pageX || (slideIndex === 0 ? -1 : 1);
+        const direction     = dragDistance > 0 ? 'left' : 'right';
 
+        // Check if the slides moves are not restricted
+        if (this.props.isInfinite === true
+          || (direction === 'left' && slideIndex !== 0)
+          || (direction === 'right' && slideIndex !== this.props.slides.length - 1)) {
+
+          // Move the slides to their next position
+          this.draggedSlide.slide(this.dragDistance, false, 'px');
+          this.nextDragSlide.slide(this.dragDistance + this.activeSlideWidth + SLIDE_MARGIN, false, 'px');
+          this.prevDragSlide.slide(this.dragDistance - this.activeSlideWidth - SLIDE_MARGIN, false, 'px');
+        } else {
+
+          return this._setInitialState();
+        }
         // Store the movement speed
         this.dragSpeed = Math.round((dragDistance > this.dragDistance)
           ? dragDistance - this.dragDistance
@@ -114,7 +126,7 @@ class Slider extends React.PureComponent { // TODO Check is isInfinite everywher
     // Check if all the required stuff exists
     if (this.prevDragSlide && this.draggedSlide
       && this.nextDragSlide && this.dragDistance && this.slideOnMobile) {
-      const direction = this.dragDistance > 0 ? 'left' : 'right';
+      const direction = this.dragDistance >= 0 ? 'left' : 'right';
 
       /**
        * Upper a defined speed, we are considering that the slides must be
