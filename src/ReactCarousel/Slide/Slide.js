@@ -33,8 +33,10 @@ class Slide extends React.Component {
   }
 
 
-  shouldComponentUpdate(nextProps) {
-    return this.props.activeSlide === this.props.index || nextProps.activeSlide === nextProps.index;
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.activeSlide === this.props.index
+      || nextProps.activeSlide === nextProps.index
+      || nextState.style !== this.state.style
   }
 
 
@@ -59,6 +61,13 @@ class Slide extends React.Component {
         this.slideEl.style.transition = 'none';
       }
     }
+
+    if (nextProps.slidesSpeed !== this.props.slidesSpeed) {
+      const style =  this._getStyle(nextProps);
+      this.setState({ style }, () => {
+        this.transition = style.transition
+      });
+    }
     this.stay = false;
   }
 
@@ -77,7 +86,6 @@ class Slide extends React.Component {
       : props.index > props.activeSlide
         ? nextSlideStyle
         : prevSlideStyle;
-
     return Object.assign({}, slideStyle, stateStyle, {
       backgroundImage : `url(${ props.slide })`,
       transition      : props.isAnimated === true
@@ -130,7 +138,6 @@ class Slide extends React.Component {
 
 
   render() {
-
     return (
       <div
         ref="slide"

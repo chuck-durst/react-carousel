@@ -27,11 +27,7 @@ class ReactCarousel extends React.PureComponent {
       this._initSlides(this.props.slides);
 
     if (this.props.autoPlay === true) {
-      this.autoPlayInterval = setInterval(() => {
-        if (this.isHovered === false || this.props.stopOnHover === false) {
-          this.goToSlide();
-        }
-      }, this.props.autoPlayDelay);
+      this._setAutoPlay();
     }
   }
 
@@ -45,7 +41,11 @@ class ReactCarousel extends React.PureComponent {
       this.goToSlide(nextProps.goToSlide);
     }
     if (nextProps.autoPlay !== this.props.autoPlay) {
-      clearInterval(this.autoPlayInterval);
+      if (nextProps.autoPlay === false) {
+        clearInterval(this.autoPlayInterval);
+      } else {
+        this._setAutoPlay();
+      }
     }
   }
 
@@ -62,6 +62,18 @@ class ReactCarousel extends React.PureComponent {
    */
   _initSlides = (slides = []) => {
     this.setState({ slides });
+  };
+
+  /**
+   * Launches the automatic play
+   * @private
+   */
+  _setAutoPlay = () => {
+    this.autoPlayInterval = setInterval(() => {
+      if (this.isHovered === false || this.props.stopOnHover === false) {
+        this.goToSlide();
+      }
+    }, this.props.autoPlayDelay);
   };
 
 

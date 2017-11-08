@@ -66,9 +66,7 @@ class App extends React.PureComponent {
 
 
   _updateSettings = () => {
-    if (window.innerWidth < 600) {
-      this.setState({ isMobile: true });
-    }
+    this.setState({ isMobile: window.innerWidth < 600 });
   };
 
   render() {
