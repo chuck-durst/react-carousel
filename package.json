@@ -1,29 +1,43 @@
 {
-  "name": "react-webpack-babel",
-  "version": "0.0.4",
-  "description": "React Webpack Babel Starter Kit",
-  "main": "''",
+  "name": "react-carousel",
+  "version": "0.1.0",
+  "description": "a Simple react carousel component.",
+  "main": "lib",
   "scripts": {
-    "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "start": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "dev": " webpack-dashboard -- webpack-dev-server",
-    "test": "export NODE_ENV=test && jest"
+    "test": "export NODE_ENV=test && jest",
+    "build": "babel src -d lib --copy-files"
   },
+  "keywords": [
+    "react",
+    "carousel",
+    "slider",
+    "slide",
+    "image",
+    "component"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/alicoding/react-webpack-babel"
+    "url": "https://github.com/chuck-durst/react-carousel"
   },
-  "author": "Ali Al Dallal",
+  "author": "chuck-durst",
   "license": "MIT",
-  "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
+  "homepage": "https://github.com/chuck-durst/react-carousel#readme",
   "dependencies": {
     "node-sass": "^4.3.0",
+    "prop-types": "^15.6.0",
     "react": "15.6.1",
     "react-dom": "15.4.2",
     "sass-loader": "^6.0.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-transform-flow-strip-types": "^6.14.0",
+    "babel-preset-stage-0": "^6.5.0",
+
     "babel-core": "^6.23.1",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1",
@@ -65,8 +79,7 @@
       "\\.(css|less|s[ac]ss|styl)$": "<rootDir>/__mocks__/styleMock.js"
     },
     "moduleFileExtensions": [
-      "js",
-      "jsx"
+      "js"
     ],
     "moduleDirectories": [
       "node_modules"

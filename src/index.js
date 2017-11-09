@@ -31,7 +31,7 @@ ReactCarousel.propTypes = { // TODO add default classes overwritting
 
 
 ReactCarousel.defaultProps = {
-  slides          : null,
+  slides          : [],
   className       : 'ce-carousel',
   showArrows      : true,
   showDots        : true,
