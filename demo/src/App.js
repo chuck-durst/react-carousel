@@ -1,10 +1,7 @@
 import React          from 'react'
 
-import ReactCarousel  from './ReactCarousel'
-import NextArrow      from './ReactCarousel/NextArrow'
-import PrevArrow      from './ReactCarousel/PrevArrow'
-import Dots           from './ReactCarousel/Dot'
-import './App.scss'
+import ReactCarousel  from '../../src/index'
+import './app.scss'
 
 
 class App extends React.PureComponent {
@@ -27,9 +24,6 @@ class App extends React.PureComponent {
       isAnimated      : true,
       stopOnHover     : true,
       allowKeyboard   : true,
-      customNextArrow : NextArrow,
-      customPrevArrow : PrevArrow,
-      customDots      : Dots,
       beforeChange    : ()=>console.log('before change'),
       afterChange     : ()=>console.log('after change'),
       goToSlide       : null,
