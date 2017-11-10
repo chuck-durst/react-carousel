@@ -1,107 +1,73 @@
-# react-webpack-babel
-Simple React Webpack Babel Starter Kit
+# react-carousel (0.1.0)
 
-Tired of complicated starters with 200MB of dependencies which are hard to understand and modify?
+A simple a powerful carousel for React
 
-Try this is a simple [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/) and [Babel](https://babeljs.io/) application with nothing else in it.
+## Installation
 
-### What's in it?
+`yarn add react-carousel` or `npm i -s react-carousel`
 
-* Simple src/index.js and src/index.css (local module css).
-* Webpack configuration for development (with hot reloading) and production (with minification).
-* CSS module loading, so you can include your css by ```import styles from './path/to.css';```.
-* Both js(x) and css hot loaded during development.
-* [Webpack Dashboard Plugin](https://github.com/FormidableLabs/webpack-dashboard) on dev server.
+## Introduction
 
-### To run
+`react-carousel` has been designed to work on both mobile and desktop. It comes with a lot of configurations to make it feet to any type of design. 
 
-* You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
-* Fork and clone the project:
+`react-carousel` works with the background-image property which make it fully responsive!  
 
-```
-git clone https://github.com/alicoding/react-webpack-babel.git
-```
+## Usage
 
-* Then install the dependencies:
+All you have to do is importing the component to your project and specify your slides! 
 
-```
-npm install
-```
+``` js
+import React from 'react'
 
-* Run development server:
+import ReactCarousel from 'react-carousel'
+
+const App = (props) => {
+	return (
+		<ReactCarousel slides={ props.slides } />
+	)
+};
 
 ```
-npm start
-```
 
-* Or you can run development server with [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard):
 
-```
-npm run dev
-```
+[checkout the demo](https://github.com/chuck-durst/react-carousel/tree/master/demo/src) for a better example of how to use it! 
 
-Open the web browser to `http://localhost:8888/`
 
-### To test
-To run unit tests:
+## Props
 
-```
-npm test
-```
 
-Tests come bundled with:
+|    Property      | Type |          Description                                                                                                    | Default value |
+| -------------    | ---- |          -----------                                                                                                    | ------------- |
+|  slides          | array | Contains yours slides urls. (required)                                                                                 | -             |
+|  className       | String | The class name of the main component                                                                                  | ce-carousel   |
+|  showArrows      | bool | Defines if the navigation arrows must be showed                                                                         | true          |
+|  showDots        | bool | Defines if the pagination dots must be showed                                                                           | true          |
+|  autoPlay        | bool | Enables the automatic play                                                                                              | false         |
+|  autoPlayDelay   | int  | The delay between each slide in autoPlay in ms                                                                          | 5000          |
+|  slidesSpeed     | int  | The slides movement speed in ms                                                                                         | 150           |
+|  isInfinite      | bool | Defines if the slider is infinite                                                                                       | true          |
+|  isAnimated      | bool | Defines if the slides should be animated                                                                                | true          |
+|  stopOnHover     | bool | Allows you to stop the autoPlay when the component is hovered                                                           | false         |
+|  slideOnMobile   | bool | Enable the sliding feature on mobile devices (coming soon on desktop too                                                | true          |
+|  allowKeyboard   | bool | Allows you to navigate using your keyboard arrows                                                                       | true          |
+|  customNextArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/NextArrow)    | -             | 
+|  customPrevArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/PrevArrow)    | -             | 
+|  customDots      | function | A function used to map the pagination dots which takes two parameters (isActive, index) to let you fully customize the pagination (take a look at the original element: src/Dot) | - |
+|  beforeChange    | function | A callback called before each slides changes                                                                        | -             |
+|  afterChange     | function | A callback called after each slides changes                                                                         | -             |
+|  goToSlide       | int  | Allows you to go to a defined slide                                                                                     | null          |
+|  backdropColor   | string | The component background-color. Can be any css color property                                                         | null          |
+|  sliderClassName | string | The className of the slider element                                                                                   | ce-carousel__slider |
+|  slidesClassName | string | The className of the slides element                                                                                   | ce-carousel__slide  |
 
-* Jest
-* Enzyme
-* React Test Utils
-* React Test Renderer
+Take a look at the demo folder if you feel stuck! :)
 
-### To build the production package
 
-```
-npm run build
-```
+## License
 
-### Nginx Config
+`react-carousel` is released under the MIT license.
 
-Here is an example Nginx config:
 
-```
-server {
-	# ... root and other options
+## Contribute
 
-	gzip on;
-	gzip_http_version 1.1;
-	gzip_types text/plain text/css text/xml application/javascript image/svg+xml;
-
-	location / {
-		try_files $uri $uri/ /index.html;
-	}
-
-	location ~ \.html?$ {
-		expires 1d;
-	}
-
-	location ~ \.(svg|ttf|js|css|svgz|eot|otf|woff|jpg|jpeg|gif|png|ico)$ {
-		access_log off;
-		log_not_found off;
-		expires max;
-	}
-}
-```
-
-### Eslint
-There is a `.eslint.yaml` config for eslint ready with React plugin.
-
-To run linting, run:
-
-```
-npm run lint
-```
-
-### Notes on importing css styles
-* styles having /src/ in their absolute path considered part of the application and exported as local css modules.
-* other styles considered global styles used by components and included in the css bundle directly.
-
-### Contribute
-Please contribute to the project if you know how to make it better, including this README :)
+Feel free to contribute to this project if you know how to make it be better.
