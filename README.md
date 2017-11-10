@@ -4,7 +4,7 @@ A simple a powerful carousel for React
 
 ## Installation
 
-`yarn add react-carousel` or `npm i -s react-carousel`
+`yarn add @chuck-durst/react-carousel` or `npm i -s @chuck-durst/react-carousel`
 
 ## Introduction
 
@@ -19,7 +19,7 @@ All you have to do is importing the component to your project and specify your s
 ``` js
 import React from 'react'
 
-import ReactCarousel from 'react-carousel'
+import ReactCarousel from '@chuck-durst/react-carousel'
 
 const App = (props) => {
 	return (
