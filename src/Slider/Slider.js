@@ -162,6 +162,7 @@ class Slider extends React.PureComponent {
             slides={ this.props.slides }
             activeSlide={ this.props.activeSlide }
             onPaginationClick={ this.props.goToSlide }
+						dots={ this.props.dots }
           />
         }
         {
