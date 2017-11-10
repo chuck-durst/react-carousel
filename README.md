@@ -30,7 +30,7 @@ const App = (props) => {
 ```
 
 
-[checkout the demo](https://github.com/chuck-durst/react-carousel/tree/master/demo/src) for a better example of how to use it! 
+[checkout the demo](https://chuck-durst.github.io/react-carousel/) for a better example of how to use it! 
 
 
 ## Props
