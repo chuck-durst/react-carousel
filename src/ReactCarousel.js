@@ -218,7 +218,7 @@ class ReactCarousel extends React.PureComponent {
         onMouseOver={ () => this._handleMouseHover(true) }
         onMouseLeave={ () => this._handleMouseHover(false) }
       >
-        { this.props.showArrows === true &&
+        { this.props.showArrows === true && this.props.slides.length > 1 &&
           <div onClick={ this._handlePrevClick } style={ arrowContainerStyle }>
             { prevArrow }
           </div>
@@ -238,7 +238,7 @@ class ReactCarousel extends React.PureComponent {
           sliderClassName={ this.props.sliderClassName }
           slidesClassName={ this.props.slidesClassName }
         />
-        { this.props.showArrows === true &&
+        { this.props.showArrows === true && this.props.slides.length > 1 &&
           <div onClick={ this._handleNextClick } style={ arrowContainerStyle }>
             { nextArrow }
           </div>

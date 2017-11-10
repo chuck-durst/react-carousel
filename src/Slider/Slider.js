@@ -37,15 +37,27 @@ class Slider extends React.PureComponent {
    */
   _slideAll = (direction) => {
     if (direction === 'middle') {
-      this.prevDragSlide.slide(-100, true, '%', true);
+    	if (this.props.slides.length > 2) {
+				this.prevDragSlide.slide(-100, true, '%', true);
+				this.nextDragSlide.slide(100, true, '%', true);
+			} else {
+
+    		// Special support when there is only 2 slides
+				this.prevDragSlide.slide(this.dragDistance > 0 ? -100 : 100, true, '%', true);
+			}
       this.draggedSlide.slide(0, true, '%', true);
-      this.nextDragSlide.slide(100, true, '%', true);
       return null;
     }
 
-    this.prevDragSlide.slide(direction === 'right' ? -100 : 0, true, '%', true);
-    this.draggedSlide.slide(direction === 'right' ? -100 : 100, true, '%', true);
-    this.nextDragSlide.slide(direction === 'right' ? 0 : 100, true, '%', true);
+    // Special support when there is only 2 slides
+    if (this.props.slides.length > 2) {
+			this.prevDragSlide.slide(direction === 'right' ? -100 : 0, true, '%', true);
+			this.draggedSlide.slide(direction === 'right' ? -100 : 100, true, '%', true);
+			this.nextDragSlide.slide(direction === 'right' ? 0 : 100, true, '%', true);
+		} else {
+			this.draggedSlide.slide(direction === 'right' ? -100 : 100, true, '%', true);
+			this.prevDragSlide.slide(0, true, '%', true);
+		}
     this.props.goToSlide(direction === 'right' ? this.nextDragSlide.props.index : this.prevDragSlide.props.index);
   };
 
@@ -58,7 +70,7 @@ class Slider extends React.PureComponent {
    * @private
    */
   handleSlideMove = (pageX, slideIndex) => {
-    if (this.props.slideNavigation === true) {
+    if (this.props.slideNavigation === true && this.props.slides.length > 1) {
 
       // Check if there is already a dragged slide stored and add it the opposite case
       if (!this.draggedSlide) {
@@ -89,8 +101,13 @@ class Slider extends React.PureComponent {
 
           // Move the slides to their next position
           this.draggedSlide.slide(this.dragDistance, false, 'px');
-          this.nextDragSlide.slide(this.dragDistance + this.activeSlideWidth + SLIDE_MARGIN, false, 'px');
-          this.prevDragSlide.slide(this.dragDistance - this.activeSlideWidth - SLIDE_MARGIN, false, 'px');
+
+          if (this.props.slides.length > 2 || direction === 'right') {
+						this.nextDragSlide.slide(this.dragDistance + this.activeSlideWidth + SLIDE_MARGIN, false, 'px');
+					}
+					if (this.props.slides.length > 2 || direction === 'left') {
+						this.prevDragSlide.slide(this.dragDistance - this.activeSlideWidth - SLIDE_MARGIN, false, 'px');
+					}
         } else {
 
           return this._setInitialState();
@@ -146,7 +163,7 @@ class Slider extends React.PureComponent {
 
     return (
       <div style={ sliderStyle } className={ this.props.sliderClassName } ref="slider">
-        { this.props.showDots === true &&
+        { this.props.showDots === true && this.props.slides.length > 1 &&
           <Pagination
             slides={ this.props.slides }
             activeSlide={ this.props.activeSlide }
