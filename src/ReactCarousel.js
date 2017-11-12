@@ -161,7 +161,7 @@ class ReactCarousel extends React.PureComponent {
    */
   _handlePrevClick = debounce(() => {
     this.goToSlide(this.state.activeSlide - 1)
-  }, this.props.isAnimated ? this.props.slidesSpeed : 0);
+  }, this.props.isAnimated ? this.props.slidesSpeed : 0, true);
 
 
   /**
@@ -171,7 +171,7 @@ class ReactCarousel extends React.PureComponent {
    */
   _handleNextClick = debounce(() => {
     this.goToSlide(this.state.activeSlide + 1)
-  }, this.props.isAnimated ? this.props.slidesSpeed : 0);
+  }, this.props.isAnimated ? this.props.slidesSpeed : 0, true);
 
 
   /**
