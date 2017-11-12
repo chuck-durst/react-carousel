@@ -2,7 +2,7 @@ import React from 'react'
 
 import { dotStyle, activeDotStyle } from '../styles'
 
-export default (isActive, index) => {
+export default (index, isActive) => {
 
   const getStyle = () => {
     return isActive === true

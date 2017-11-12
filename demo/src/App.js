@@ -29,12 +29,7 @@ class App extends React.PureComponent {
       goToSlide       : null,
       backdropColor   : 'rgba(0,0,0,0.6)',
       sliderClassName : 'slider',
-      slidesClassName : 'slides',
-			customDots : (isActive, index) => {
-      	return (
-					<img style={{  width: '20px', opacity: isActive ? 1 : 0.5 }} src={ this.slides[index]} alt=""/>
-				)
-			}
+      slidesClassName : 'slides'
     };
 
     /** Mobile settings **/

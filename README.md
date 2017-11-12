@@ -52,7 +52,7 @@ const App = (props) => {
 |  allowKeyboard   | bool | Allows you to navigate using your keyboard arrows                                                                       | true          |
 |  customNextArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/NextArrow)    | -             | 
 |  customPrevArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/PrevArrow)    | -             | 
-|  customDots      | function | A function used to map the pagination dots which takes two parameters (isActive, index) to let you fully customize the pagination (take a look at the original element: src/Dot) | - |
+|  customDots      | function | A function used to map the pagination dots which takes two parameters (index, isActive) to let you fully customize the pagination (take a look at the original element: src/Dot) | - |
 |  beforeChange    | function | A callback called before each slides changes                                                                        | -             |
 |  afterChange     | function | A callback called after each slides changes                                                                         | -             |
 |  goToSlide       | int  | Allows you to go to a defined slide                                                                                     | null          |

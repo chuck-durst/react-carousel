@@ -10,7 +10,7 @@ export default ({ slides, activeSlide, onPaginationClick, dots }) => {
         slides.map((slide, key) => {
           return (
             <div key={ key } onClick={ () => onPaginationClick(key) }>
-							{ dots(key === activeSlide, key) }
+							{ dots(key, key === activeSlide) }
             </div>
             )
         })
