@@ -13,16 +13,9 @@ class Slider extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.slideOnMobile    = false;
-
     this._setInitialState();
   }
 
-
-  componentDidMount() {
-    // Store a variable that defines if the slides can be dragged on mobile/tablet
-    this.slideOnMobile = (this.props.slideOnMobile === true && this._isMobile() === true);
-  }
 
   _setInitialState = () => {
     this.pageX            = 0;
@@ -32,11 +25,6 @@ class Slider extends React.PureComponent {
     this.activeSlideWidth = 0;
     this.prevDragSlide    = null;
     this.nextDragSlide    = null;
-  };
-
-
-  _isMobile = () => {
-    return(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
   };
 
 
@@ -63,12 +51,14 @@ class Slider extends React.PureComponent {
 
 
   /**
-   * Triggered when a slide is swiped on a mobile device.
-   * @param e
+   * Move the targeted slide and its neighbors
+   * depending on the move direction
    * @param slideIndex
+   * @param pageX
+   * @private
    */
-  handleSlideTouchMove = (e, slideIndex) => {
-    if (this.slideOnMobile === true) {
+  handleSlideMove = (pageX, slideIndex) => {
+    if (this.props.slideNavigation === true) {
 
       // Check if there is already a dragged slide stored and add it the opposite case
       if (!this.draggedSlide) {
@@ -80,7 +70,7 @@ class Slider extends React.PureComponent {
         this.nextDragSlide    = this.refs[`slide--${ nextSlideIndex }`] || null;
         this.draggedSlide     = this.refs[`slide--${ slideIndex }`] || null;
         this.dragDistance     = 0;
-        this.pageX            = e.targetTouches[0].pageX;
+        this.pageX            = pageX;
         this.activeSlideWidth = ReactDOM.findDOMNode(this.draggedSlide).getBoundingClientRect().width
       }
 
@@ -89,7 +79,7 @@ class Slider extends React.PureComponent {
 
         // The following value must never be equal to zero or the slider won't be able to
         // move when the infinite mode is disabled
-        const dragDistance  = e.targetTouches[0].pageX - this.pageX || (slideIndex === 0 ? -1 : 1);
+        const dragDistance  = pageX - this.pageX || (slideIndex === 0 ? -1 : 1);
         const direction     = dragDistance > 0 ? 'left' : 'right';
 
         // Check if the slides moves are not restricted
@@ -119,13 +109,12 @@ class Slider extends React.PureComponent {
 
   /**
    * On touch end, get the slides next position
-   * @param e
    */
-  handleSlideTouchEnd = () => {
+  handleSlideMoveEnd = () => {
 
     // Check if all the required stuff exists
     if (this.prevDragSlide && this.draggedSlide
-      && this.nextDragSlide && this.dragDistance && this.slideOnMobile) {
+      && this.nextDragSlide && this.dragDistance && this.props.slideNavigation) {
       const direction = this.dragDistance >= 0 ? 'left' : 'right';
 
       /**
@@ -176,8 +165,8 @@ class Slider extends React.PureComponent {
               slidesSpeed={ this.props.slidesSpeed }
               totalSlides={ this.props.slides.length }
               activeSlide={ this.props.activeSlide }
-              onTouchMove={ this.handleSlideTouchMove }
-              onTouchEnd={ this.handleSlideTouchEnd }
+              onSlideMove={ this.handleSlideMove }
+              onSlideMoveEnd={ this.handleSlideMoveEnd }
               moveDirection={ this.props.moveDirection }
               slidesClassName={ this.props.slidesClassName }
             />

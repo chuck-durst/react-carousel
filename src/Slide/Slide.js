@@ -96,7 +96,25 @@ class Slide extends React.Component {
 
 
   _handleTouchMove = (e) => {
-    return this.props.onTouchMove(e, this.props.index);
+    return this.props.onSlideMove(e.targetTouches[0].pageX, this.props.index);
+  };
+
+
+  _handleDragStart = (e) => {
+    window.addEventListener('mouseup', this._handleDragStop);
+    window.addEventListener('mousemove', this._handleMouseMove);
+  };
+
+
+  _handleDragStop = (e) => {
+    window.removeEventListener('mouseup', this._handleDragStop);
+    window.removeEventListener('mousemove', this._handleMouseMove);
+    this.props.onSlideMoveEnd();
+  };
+
+
+  _handleMouseMove = (e) => {
+    this.props.onSlideMove(e.pageX, this.props.index);
   };
 
 
@@ -125,6 +143,7 @@ class Slide extends React.Component {
    * @param x {int}               : the slide coordinates
    * @param isAnimated {boolean}  : defines if the move must be animated
    * @param unit {string}         : the distance unity that must be used
+   * @param stay {boolean}        : the next move will be ignored
    */
   slide = (x, isAnimated = true, unit = '%', stay = false) => {
     let slideEl = this.slideEl;
@@ -132,7 +151,6 @@ class Slide extends React.Component {
     slideEl.style.transition  = isAnimated ? this.transition : 'none';
     slideEl.style.transform   = `translate3d(${ x }${ unit }, 0, 0) scale(0.9)`;
 
-    /* If stay === true, the next move will be ignored */
     this.stay = stay;
   };
 
@@ -143,8 +161,9 @@ class Slide extends React.Component {
         ref="slide"
         style={ this.state.style }
         className={ this.props.slidesClassName }
+        onMouseDown={ this._handleDragStart }
         onTouchMove={ this._handleTouchMove }
-        onTouchEnd={ this.props.onTouchEnd }
+        onTouchEnd={ this.props.onSlideMoveEnd }
       />
     )
   }

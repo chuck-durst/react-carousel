@@ -48,7 +48,7 @@ const App = (props) => {
 |  isInfinite      | bool | Defines if the slider is infinite                                                                                       | true          |
 |  isAnimated      | bool | Defines if the slides should be animated                                                                                | true          |
 |  stopOnHover     | bool | Allows you to stop the autoPlay when the component is hovered                                                           | false         |
-|  slideOnMobile   | bool | Enable the sliding feature on mobile devices (coming soon on desktop too                                                | true          |
+|  slideNavigation | bool | Allows sliding on mobile and desktop                                                                                    | true          |
 |  allowKeyboard   | bool | Allows you to navigate using your keyboard arrows                                                                       | true          |
 |  customNextArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/NextArrow)    | -             | 
 |  customPrevArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/PrevArrow)    | -             | 
