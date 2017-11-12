@@ -1,6 +1,6 @@
-# react-carousel (0.1.0)
+# react-carousel (1.0.0)
 
-A simple a powerful carousel for React
+A simple and powerful carousel for React.
 
 ## Installation
 
@@ -10,11 +10,11 @@ A simple a powerful carousel for React
 
 `react-carousel` has been designed to work on both mobile and desktop. It comes with a lot of configurations to make it feet to any type of design. 
 
-`react-carousel` works with the background-image property which make it fully responsive!  
+`react-carousel` works with the background-image property which makes it fully responsive!
 
 ## Usage
 
-All you have to do is importing the component to your project and specify your slides! 
+All you have to do is importing the component to your project and specifying your slides!.
 
 ``` js
 import React from 'react'
@@ -30,7 +30,7 @@ const App = (props) => {
 ```
 
 
-[checkout the demo](https://chuck-durst.github.io/react-carousel/) for a better example of how to use it! 
+###[checkout the demo](https://chuck-durst.github.io/react-carousel/) for a better example of how to use it!
 
 
 ## Props
@@ -60,7 +60,7 @@ const App = (props) => {
 |  sliderClassName | string | The className of the slider element                                                                                   | ce-carousel__slider |
 |  slidesClassName | string | The className of the slides element                                                                                   | ce-carousel__slide  |
 
-Take a look at the demo folder if you feel stuck! :)
+Take a look at the demo folder if you are stuck! :)
 
 
 ## License

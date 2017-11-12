@@ -1,7 +1,7 @@
 {
   "name": "@chuck-durst/react-carousel",
-  "version": "0.1.0",
-  "description": "a Simple react carousel component.",
+  "version": "1.0.0",
+  "description": "A simple react carousel component.",
   "main": "lib",
   "scripts": {
     "start": "webpack-dev-server --progress --profile --colors",
