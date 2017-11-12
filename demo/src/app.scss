@@ -49,6 +49,21 @@ body {
       padding-left: 1em;
       color: #fff;
     }
+
+    .header__github-link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 30px;
+      margin: auto 1rem;
+
+      svg {
+        width: 30px;
+        color: white;
+        fill: white;
+      }
+    }
   }
 
   &__container {
