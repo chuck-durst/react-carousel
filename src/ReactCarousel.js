@@ -127,22 +127,22 @@ class ReactCarousel extends React.PureComponent {
    * @private
    */
   goToSlide = (slide = this.state.activeSlide + 1) => {
-    this.props.beforeChange();
+		this.props.beforeChange(this.state.activeSlide);
     if (slide < 0 && this.props.isInfinite === true) {
       this.setState({
         activeSlide   : this.state.slides.length - 1,
         moveDirection : 'left'
-      }, this.props.afterChange)
+      }, () => this.props.afterChange(this.state.slides.length - 1, 'left'))
     } else if (slide > this.state.slides.length - 1 && this.props.isInfinite === true) {
       this.setState({
         activeSlide   : 0,
         moveDirection : 'right'
-      }, this.props.afterChange);
+      }, () => this.props.afterChange(0, 'right'));
     } else if (slide >= 0 && slide <= this.state.slides.length -1) {
       this.setState({
         activeSlide   : slide,
         moveDirection : slide > this.state.activeSlide ? 'right' : 'left'
-      }, this.props.afterChange);
+      }, () => this.props.afterChange(slide, this.state.moveDirection));
     }
   };
 

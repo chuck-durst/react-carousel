@@ -25,8 +25,8 @@ class App extends React.PureComponent {
       stopOnHover     : true,
       allowKeyboard   : true,
       slideNavigation : true,
-      beforeChange    : ()=>console.log('before change'),
-      afterChange     : ()=>console.log('after change'),
+      beforeChange    : this._beforeChange,
+      afterChange     : this._afterChanger,
       goToSlide       : null,
       backdropColor   : 'rgba(0,0,0,0.6)',
       sliderClassName : 'slider',
@@ -54,6 +54,16 @@ class App extends React.PureComponent {
       'http://fakeimg.pl/300/999999/',
     ];
   }
+
+
+  _beforeChange = (prevIndex) => {
+  	console.log(`Before change: slideIndex = ${ prevIndex }`);
+	};
+
+
+  _afterChanger = (nextIndex, direction) => {
+  	console.log(`After change: slideIndex = ${ nextIndex } & direction = ${ direction }`);
+	};
 
 
   componentDidMount() {

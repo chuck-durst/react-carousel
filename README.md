@@ -1,4 +1,4 @@
-# react-carousel (1.0.2)
+# react-carousel (1.1.2)
 
 A simple and powerful carousel for React.
 
@@ -53,8 +53,8 @@ const App = (props) => {
 |  customNextArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/NextArrow)    | -             | 
 |  customPrevArrow | React Element | A custom arrow element (if you need inspiration you can take a look at the original element: src/PrevArrow)    | -             | 
 |  customDots      | function | A function used to map the pagination dots which takes two parameters (index, isActive) to let you fully customize the pagination (take a look at the original element: src/Dot) | - |
-|  beforeChange    | function | A callback called before each slides changes                                                                        | -             |
-|  afterChange     | function | A callback called after each slides changes                                                                         | -             |
+|  beforeChange    | function | A callback called before each slides changes (the first parameter corresponds to the index of the current active slide)                                                                      | -             |
+|  afterChange     | function | A callback called after each slides changes (the first parameter corresponds to the index of the new active slide. The second parameter contains the slide direction)                                                                      | -             |
 |  goToSlide       | int  | Allows you to go to a defined slide                                                                                     | null          |
 |  backdropColor   | string | The component background-color. Can be any css color property                                                         | null          |
 |  sliderClassName | string | The className of the slider element                                                                                   | ce-carousel__slider |
