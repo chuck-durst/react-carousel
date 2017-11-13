@@ -11,6 +11,15 @@ export const carouselStyle = {
   outline         : 0
 };
 
+export const carouselContentStyle = {
+	height				: '100%',
+	width					: '100%',
+	display				: 'flex',
+	flexDirection	: 'column',
+	alignItems		: 'center',
+justifyContent	: 'space-between'
+};
+
 
 /**-------------------------**\
  * Slider
@@ -39,6 +48,7 @@ export const slideStyle = {
   backgroundPosition  : 'center',
   backgroundRepeat    : 'no-repeat',
   transition          : 'transform 0.2s ease-out',
+	willChange 					: 'transform'
 };
 
 export const activeSlideStyle = {
@@ -87,7 +97,7 @@ export const lockedArrowStyle = {
 
 export const paginationStyle = {
   zIndex          : 200,
-  position        : 'absolute',
+  position        : 'relative',
   bottom          : 0,
   left            : 0,
   display         : 'flex',

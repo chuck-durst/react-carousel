@@ -1,10 +1,13 @@
 import React      from 'react'
 
-import Slider   from './Slider'
+import Slider   	from './Slider'
+import Pagination from './Pagination'
+
 import debounce from './debounce'
 
 import {
   carouselStyle,
+	carouselContentStyle,
   arrowContainerStyle } from './styles'
 
 class ReactCarousel extends React.PureComponent {
@@ -223,21 +226,30 @@ class ReactCarousel extends React.PureComponent {
             { prevArrow }
           </div>
         }
-        <Slider
-          slides={ this.state.slides }
-          activeSlide={ this.state.activeSlide }
-          isInfinite={ this.props.isInfinite }
-          isAnimated={ this.props.isAnimated }
-          slidesSpeed={ this.props.slidesSpeed }
-          slideNavigation={ this.props.slideNavigation }
-          slideOnDesktop={ this.props.slideOnDesktop }
-          dots={ this.props.customDots }
-          showDots={ this.props.showDots }
-          moveDirection={ this.state.moveDirection }
-          goToSlide={ this.goToSlide }
-          sliderClassName={ this.props.sliderClassName }
-          slidesClassName={ this.props.slidesClassName }
-        />
+        <div style={ carouselContentStyle }>
+					<Slider
+						slides={ this.state.slides }
+						activeSlide={ this.state.activeSlide }
+						isInfinite={ this.props.isInfinite }
+						isAnimated={ this.props.isAnimated }
+						slidesSpeed={ this.props.slidesSpeed }
+						slideNavigation={ this.props.slideNavigation }
+						slideOnDesktop={ this.props.slideOnDesktop }
+						showDots={ this.props.showDots }
+						moveDirection={ this.state.moveDirection }
+						goToSlide={ this.goToSlide }
+						sliderClassName={ this.props.sliderClassName }
+						slidesClassName={ this.props.slidesClassName }
+					/>
+					{ this.props.showDots === true && this.props.slides.length > 1 &&
+					<Pagination
+						slides={ this.state.slides }
+						activeSlide={ this.state.activeSlide }
+						onPaginationClick={ this.goToSlide }
+						dots={ this.props.customDots }
+					/>
+					}
+				</div>
         { this.props.showArrows === true && this.props.slides.length > 1 &&
           <div onClick={ this._handleNextClick } style={ arrowContainerStyle }>
             { nextArrow }

@@ -2,7 +2,6 @@ import React      from 'react'
 import ReactDOM   from 'react-dom'
 
 import Slide      from '../Slide'
-import Pagination from '../Pagination'
 
 import { sliderStyle}  from '../styles'
 
@@ -163,14 +162,6 @@ class Slider extends React.PureComponent {
 
     return (
       <div style={ sliderStyle } className={ this.props.sliderClassName } ref="slider">
-        { this.props.showDots === true && this.props.slides.length > 1 &&
-          <Pagination
-            slides={ this.props.slides }
-            activeSlide={ this.props.activeSlide }
-            onPaginationClick={ this.props.goToSlide }
-						dots={ this.props.dots }
-          />
-        }
         {
           this.props.slides.map((slide, key) => (
             <Slide
