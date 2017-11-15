@@ -1,4 +1,4 @@
-# react-carousel (1.1.3)
+# react-carousel (1.1.4)
 
 A simple and powerful carousel for React.
 
